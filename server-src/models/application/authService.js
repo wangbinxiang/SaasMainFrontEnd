@@ -1,9 +1,9 @@
-
+import UserAdapter, { verification } from '../adapter/userAdapter';
 
 //用户认证服务类
 class authService {
-    constructor(userAdapter) {
-        this.userAdapter = new userAdapter();
+    constructor() {
+        this.userAdapter = new UserAdapter();
     }
 
     //用户注册功能

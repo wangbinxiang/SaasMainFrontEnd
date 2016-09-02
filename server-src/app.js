@@ -13,10 +13,18 @@ import session from 'koa-generic-session';
 import memcacheSession from 'koa-memcached';
 import passport from 'koa-passport';
 import _ from 'underscore';
+process.env.NODE_CONFIG_DIR = path.join(__dirname, './configs');
+console.log(process.env.NODE_CONFIG_DIR);
+import getConfig from 'config';
 
+
+console.log(getConfig.util.getEnv('NODE_CONFIG_DIR'));
+// console.log(getConfig.get('Customer.dbConfig'));
 
 //配置文件
 import config from './config';
+//config全局化
+// global.config = config;
 
 //注册账号验证规则
 import passportRegister from './passport'; 
@@ -42,7 +50,7 @@ app.use(convert(logger()))
 app.keys = ['your-session-secret'];
 app.use(convert(session({
   // store: new mysqlSession(config.sessionDb),
-  // store: memcacheSession(config.memcache),
+  store: memcacheSession(config.memcache),
   rolling: true,
   cookie: {
       maxage: config.cookieExpired
@@ -165,7 +173,7 @@ server.on('error', (error) => {
     default:
       throw error
   }
-})
+});
 server.on('listening', () => {
   console.log('==> 🌎  Koa2 server listening on port: %d in %s mode', port, app.env)
 })

@@ -1,19 +1,20 @@
 import User from '../models/user';
-import UserAdapter, { verification } from '../models/adapter/userAdapter';
 import AuthService from '../models/application/authService';
+import ApiServiceLocation from '../libs/ApiServiceLocation';
+import SaasApiServiceLocation from '../models/serviceLocation/SaasApiServiceLocation';
 
 export default async (ctx, next) => {
   const title = '首页';
   const bodyclass = 'saasIndex'
 
-  const authService = new AuthService(UserAdapter);
+  const saasApiServiceLocation = new SaasApiServiceLocation();
+  console.log(saasApiServiceLocation.get());
 
+  // const authService = new AuthService();
 
   // const requestJsonApi = new RequestJsonApi('https://api.github.com');
 
-  
-
-  await authService.login();
+  // let body = await authService.login();
   // await userAdapter.verification();
   // await verification();
   // const user = new User();
@@ -22,8 +23,8 @@ export default async (ctx, next) => {
 
   // const { res, body } = await requestJsonApi.get('/');
   //console.log(res);
-  //console.log(body);
-  ctx.cookies.set('test', 'value3');
+  // console.log(body);
+  // ctx.cookies.set('test', 'value3');
   // ctx.cookies.set('test2', 'value2');
 
   // if (ctx.isAuthenticated()) {

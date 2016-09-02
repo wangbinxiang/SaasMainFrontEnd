@@ -1,7 +1,15 @@
 import RequestJsonApi from '../../libs/requestJsonApi';
+// import apiServiceLocation from '../serviceLocation/apiServiceLocation';
 class userAdapter {
     constructor() {
 
+    }
+
+    buidRequest(url, data) {
+        // const url = getUrl();
+        // const host = apiServiceLocation.getLocation();
+        // const request = new RequestJsonApi(host);
+        // this.request = request;
     }
 
     //验证用户 async函数
@@ -9,7 +17,7 @@ class userAdapter {
         return (async () => {
             const requestJsonApi = new RequestJsonApi('https://api.github.com');
             const { res, body } = await requestJsonApi.get('/');
-            console.log(body);
+            // console.log(body);
             return body;
         })();
         //获取request请求类 promise

@@ -6,9 +6,11 @@ import Promise from 'bluebird';
  * @author 王斌翔
  */
 class RequestJsonApi {
-    constructor(host) {
+    constructor(host, url, data) {
         //初始化请求地址
         this.client = request.createClient(host);
+        this.url = url;
+        this.data = data;
     }
 
     promiseThunk(resolve, reject) {
