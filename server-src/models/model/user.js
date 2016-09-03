@@ -1,4 +1,4 @@
-class user {
+class User {
     constructor(id, passport, password) {
         this.id = id;
         this.passport = passport;

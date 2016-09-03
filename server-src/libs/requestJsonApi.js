@@ -14,43 +14,43 @@ class RequestJsonApi {
     }
 
     promiseThunk(resolve, reject) {
-        return (err, res, body) => {
+        return (err, header, body) => {
             if (err) {
                 reject(err);
             } else {
                 resolve({
-                    res,
+                    header,
                     body
                 });
             }
         }
     }
 
-    get(url) {
+    get() {
         const that = this;
         return new Promise((resolve, reject) => {
-            that.client.get(url, that.promiseThunk(resolve, reject));
+            that.client.get(that.url, that.promiseThunk(resolve, reject));
         });
     }
 
-    post(url, data) {
+    post() {
         const that = this;
         return new Promise((resolve, reject) => {
-            that.client.post(url, data, that.promiseThunk(resolve, reject));
+            that.client.post(that.url, that.data, that.promiseThunk(resolve, reject));
         });
     }
 
-    put(url, data) {
+    put() {
         const that = this;
         return new Promise((resolve, reject) => {
-            that.client.put(url, data, that.promiseThunk(resolve, reject));
+            that.client.put(that.url, that.data, that.promiseThunk(resolve, reject));
         });
     }
 
-    del(url, data) {
+    del() {
         const that = this;
         return new Promise((resolve, reject) => {
-            that.client.del(url, data, that.promiseThunk(resolve, reject));
+            that.client.del(that.url, that.data, that.promiseThunk(resolve, reject));
         });
     }
 }

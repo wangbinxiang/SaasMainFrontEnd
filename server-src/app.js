@@ -13,12 +13,9 @@ import session from 'koa-generic-session';
 import memcacheSession from 'koa-memcached';
 import passport from 'koa-passport';
 import _ from 'underscore';
-process.env.NODE_CONFIG_DIR = path.join(__dirname, './configs');
-console.log(process.env.NODE_CONFIG_DIR);
 import getConfig from 'config';
 
 
-console.log(getConfig.util.getEnv('NODE_CONFIG_DIR'));
 // console.log(getConfig.get('Customer.dbConfig'));
 
 //配置文件

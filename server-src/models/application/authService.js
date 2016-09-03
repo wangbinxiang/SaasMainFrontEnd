@@ -10,9 +10,9 @@ class authService {
 
 
     //用户登录功能
-    login() {
+    login(passport, password, aUserClass) {
         //用户适配器 
-        return this.userAdapter.verification();
+        return this.userAdapter.verification(passport, password, aUserClass);
     }
 
 

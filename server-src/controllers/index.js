@@ -1,17 +1,20 @@
-import User from '../models/user';
+// import User from '../models/user';
 import AuthService from '../models/application/authService';
-import ApiServiceLocation from '../libs/ApiServiceLocation';
-import SaasApiServiceLocation from '../models/serviceLocation/SaasApiServiceLocation';
+import SaasApiServiceLocation from '../models/apiServiceLocation/SaasApiServiceLocation';
+import User from '../models/model/User';
 
 export default async (ctx, next) => {
   const title = '首页';
   const bodyclass = 'saasIndex'
 
-  const saasApiServiceLocation = new SaasApiServiceLocation();
-  console.log(saasApiServiceLocation.get());
+  // console.log(getSaasApiServiceLocation());
+  // console.log(SaasApiServiceLocation.get());
 
-  // const authService = new AuthService();
+  const authService = new AuthService();
 
+  const user = await authService.login(123, 123, User);
+
+  console.log(user);
   // const requestJsonApi = new RequestJsonApi('https://api.github.com');
 
   // let body = await authService.login();
