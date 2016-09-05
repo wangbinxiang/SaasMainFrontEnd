@@ -12,6 +12,8 @@
     <script src="/js/vendors/dropzone.js"></script>
     <script src="/js/vendors/jquery.touchSwipe.min.js"></script>
     <script src="/js/vendors/jquery.calendario.js"></script>
+    <% if (typeof pageJs != "undefined" && pageJs) { %>
     <script src="<%= pageJs %>"></script>
+    <% } %>
   </body>
 </html>

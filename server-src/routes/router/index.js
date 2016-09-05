@@ -4,13 +4,9 @@ import index from '../../controllers/index';
 const router = Router()
 
 router.get('/', async (ctx, next) => {
-    console.log(111)
-    await next()
-    console.log(789)
+    await next();
 }, async (ctx, next) => {
-    console.log(456)
-    await next()
-    console.log(101112)
+    await next();
 },  index);
 
 export default router

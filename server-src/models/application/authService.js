@@ -1,14 +1,12 @@
 import UserAdapter, { verification } from '../adapter/userAdapter';
-import constitute from 'constitute'
 
 //用户认证服务类
-class authService {
+export default class AuthService {
     constructor() {
-        this.userAdapter = constitute(UserAdapter);
+        this.userAdapter = new UserAdapter();
     }
 
     //用户注册功能
-
 
     //用户登录功能
     login(passport, password, aUserClass) {
@@ -19,5 +17,3 @@ class authService {
 
     //获取用户
 }
-
-export default authService;

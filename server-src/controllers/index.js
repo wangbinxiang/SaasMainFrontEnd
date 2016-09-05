@@ -1,22 +1,18 @@
 // import User from '../models/user';
-import AuthService from '../models/application/authService';
-import SaasApiServiceLocation from '../models/apiServiceLocation/SaasApiServiceLocation';
-import User from '../models/model/User';
+// import AuthService from '../models/application/AuthService';
+// import User from '../models/model/User';
 
-import RequestJsonApi from '../libs/RequestJsonApi';
+// import RequestJsonApi from '../libs/RequestJsonApi';
 
 export default async (ctx, next) => {
   const title = '首页';
   const bodyclass = 'saasIndex'
 
-  // console.log(getSaasApiServiceLocation());
-  console.log(SaasApiServiceLocation.get());
+  // const authService = new AuthService();
 
-  const authService = new AuthService();
+  // const user = await authService.login(123, 123, User);
 
-  const user = await authService.login(123, 123, User);
-
-  console.log(user);
+  // console.log(user);
   
   // let data = {
   //     data: {
@@ -55,8 +51,6 @@ export default async (ctx, next) => {
   // }
 
   const pageJs = webpackIsomorphicTools.assets().javascript.app;
-
-  console.log(pageJs);
 
   await ctx.render('index/index', {
     title, bodyclass, pageJs

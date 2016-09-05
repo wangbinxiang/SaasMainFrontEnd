@@ -1,5 +1,0 @@
-class JsonApiBodyReader {
-    constructor(body) {
-
-    }
-}

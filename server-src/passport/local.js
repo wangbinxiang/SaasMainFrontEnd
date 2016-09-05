@@ -1,5 +1,8 @@
 import { Strategy } from 'passport-local';
 
+import AuthService from '../models/application/AuthService';
+import User from '../models/model/User';
+
 export default new Strategy(
     {
         usernameField: 'passport',
@@ -7,12 +10,12 @@ export default new Strategy(
     }, async (passport, password, done) => {
         try {
             //过去用户登录信息
-            if (true) {
-                let user = { passport, password };
-                user.id = 1;
+            const authService = new AuthService();
+            const user = await authService.login(123, 123, User);
+            if (user) {
                 done(null, user);
             } else {
-                done(null, false);
+                done(null, false, { message: 'Unknown user' });
             }
         } catch (err) {
             return done(err);

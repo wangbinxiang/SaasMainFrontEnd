@@ -1,4 +1,3 @@
-
 export async function showSignUp(ctx, next) {
 
     const title = '注册';
@@ -25,9 +24,15 @@ export async function showSignIn(ctx, next) {
 
     await ctx.render('auth/signin', {
         title, pageJs
-        });
+    });
 }
 
-export async function signIn(ctx, next) {
-    
+export async function logIn(ctx, next) {
+
+    const title = '登陆';
+    let info = '登陆成功';
+
+    await ctx.render('common/info', {
+        title, info
+    });
 }
