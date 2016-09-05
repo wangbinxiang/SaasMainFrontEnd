@@ -26,30 +26,34 @@ class RequestJsonApi {
         }
     }
 
+    promise(func) {
+        return new Promise(func);
+    }
+
     get() {
         const that = this;
-        return new Promise((resolve, reject) => {
+        return this.promise((resolve, reject) => {
             that.client.get(that.url, that.promiseThunk(resolve, reject));
         });
     }
 
     post() {
         const that = this;
-        return new Promise((resolve, reject) => {
+        return this.promise((resolve, reject) => {
             that.client.post(that.url, that.data, that.promiseThunk(resolve, reject));
         });
     }
 
     put() {
         const that = this;
-        return new Promise((resolve, reject) => {
+        return this.promise((resolve, reject) => {
             that.client.put(that.url, that.data, that.promiseThunk(resolve, reject));
         });
     }
 
     del() {
         const that = this;
-        return new Promise((resolve, reject) => {
+        return this.promise((resolve, reject) => {
             that.client.del(that.url, that.data, that.promiseThunk(resolve, reject));
         });
     }

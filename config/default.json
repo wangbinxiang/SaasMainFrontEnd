@@ -13,6 +13,11 @@
     }
   },
   "apiServiceLocation": {
-    "saas": "http://rap.taobao.org/mockjs/6861"
-  }
+    "saas": "http://120.25.161.1:8001"
+  },
+  "memcache": {
+    "host": "121.199.18.127",
+    "port": 11211
+  },
+  "cookieExpired": 86400
 }

@@ -7,8 +7,7 @@ class SaasApiServiceLocation extends ApiServiceLocation {
         super(...args)
     }
 
-    get(apiType) {
-        apiType = apiType? apiType: 'saas';
+    get(apiType = 'saas') {
         return super.get(apiType)
     }
 }

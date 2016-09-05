@@ -13,13 +13,13 @@ import session from 'koa-generic-session';
 import memcacheSession from 'koa-memcached';
 import passport from 'koa-passport';
 import _ from 'underscore';
-import getConfig from 'config';
+import config from 'config';
 
 
 // console.log(getConfig.get('Customer.dbConfig'));
 
 //配置文件
-import config from './config';
+// import config from './config';
 //config全局化
 // global.config = config;
 
@@ -47,10 +47,10 @@ app.use(convert(logger()))
 app.keys = ['your-session-secret'];
 app.use(convert(session({
   // store: new mysqlSession(config.sessionDb),
-  store: memcacheSession(config.memcache),
+  store: memcacheSession(config.get('memcache')),
   rolling: true,
   cookie: {
-      maxage: config.cookieExpired
+      maxage: config.get('cookieExpired')
   }
 })));
 

@@ -1,9 +1,10 @@
 import UserAdapter, { verification } from '../adapter/userAdapter';
+import constitute from 'constitute'
 
 //用户认证服务类
 class authService {
     constructor() {
-        this.userAdapter = new UserAdapter();
+        this.userAdapter = constitute(UserAdapter);
     }
 
     //用户注册功能

@@ -1,41 +1,56 @@
 import RequestJsonApi from '../../libs/RequestJsonApi';
 import SaasApiServiceLocation from '../apiServiceLocation/SaasApiServiceLocation';
+import userTranslator from '../translator/userTranslator';
+import RequestJsonApiUsers from '../request/RequestJsonApiUsers';
+import { userLoginIn } from '../../config/apiFeatureConf';
 
 class userAdapter {
-    constructor(request) {
-        this.request = RequestJsonApi;
+    constructor() {
     }
 
-    buidRequest(host, url, data) {
-        return new this.request(host, url, data);
+    buidJsonApiRequest(host, url, data) {
+        return new RequestJsonApi(host, url, data);
     }
 
     //验证用户 async函数
     verification(passport, password, aUserClass) {
-        const host = SaasApiServiceLocation.get();
-        const url = '/user/signin';
-        let data = {
-            data: {
-                type: 'users',
-                attributes: { 
-                    cellPhone: passport, 
-                    password: password
-                }
-            }
-        };
-        data = {
-            username: passport,
+        // const host = SaasApiServiceLocation.get();
+        // const url = '/users/signIn';
+        // let data = {
+        //     data: {
+        //         type: 'users',
+        //         attributes: {
+        //             cellPhone: passport, 
+        //             password: password
+        //         }
+        //     }
+        // };
+        // data = {
+        //     username: passport,
+        //     password: password
+        // }
+        
+
+        //获取地址和数据的方法分离。
+        // 1 设置地址， 2设置数据
+        // const request = this.buidJsonApiRequest(host, url, data);
+
+        const requestJsonApiUsers = new RequestJsonApiUsers(userLoginIn, { cellPhone: passport,
             password: password
-        }
-        const request = this.buidRequest(host, url, data);
+        });
 
         return (async () => {
             let user = null;
             try {
-                const { header, body } = await request.post();
 
-                if (header.statusCode == 200) {
+                const { header, body } = await requestJsonApiUsers.request();
+                // const { header, body } = await request.post();
+
+                if (header.statusCode === 200) {
                     user = new userTranslator().toUserFromJsonApiBody(body, aUserClass);
+
+                } else if (header.statusCode === 404) {
+                    throw new Error('404 Error params');
                 } else {
                     throw new Error('Invalid status');
                 }
