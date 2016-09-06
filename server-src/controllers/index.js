@@ -50,7 +50,7 @@ export default async (ctx, next) => {
   //   ctx.logout();
   // }
 
-  const pageJs = webpackIsomorphicTools.assets().javascript.app;
+  const pageJs = webpackIsomorphicTools.assets().javascript.index;
 
   await ctx.render('index/index', {
     title, bodyclass, pageJs
