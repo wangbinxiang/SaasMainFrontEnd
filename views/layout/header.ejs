@@ -22,18 +22,27 @@
                   </div>
                   <div class="top-bar-fix">
                       <ul class="menu">
-                          <li data-toggle="userShortcuts"><a class="user"><i class="material-icons mi-account_circle"></i><b>欢迎访问云游</b><i class="material-icons mi-expand_more"></i></a></li>
+                          <li data-toggle="userShortcuts"><a class="user"><i class="material-icons mi-account_circle"></i><b>
+                            <% if(!user) {%>
+                              欢迎访问云游
+                            <% } else { %>
+                              你好，<%= user.cellPhone %>
+                            <% } %>
+                            </b><i class="material-icons mi-expand_more"></i></a></li>
                       </ul>
                   </div>
                   <div class="dropdown-pane user-shortcuts-wrap" id="userShortcuts" data-dropdown>
+                      <% if(!user) {%>
                       <a href="/login">登录云游</a>
                       <a href="/register">免费注册</a>
+                      <% } else { %>
                       <a href="/logout">注销</a>
                       <a href="ChangePswd.html">修改密码</a>
                       <hr />
                       <a href="userInfoVal.html">资料审核</a>
                       <a href="indexCP.html">服务管理</a>
                       <a href="../">进入我的店铺</a>
+                      <% } %>
                   </div>
               </div>
           </div>

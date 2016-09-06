@@ -113,8 +113,9 @@ app.use(convert(koaStatic(path.join(__dirname, '../client'), {
   pathPrefix: ''
 })))
 
-//underscore写入全局方法
+
 app.use( async (ctx, next) => {
+  //underscore写入view模板全局方法
   ctx.state._ = _;
   await next();
 });

@@ -3,7 +3,7 @@ import local from './local'
 export default (passport) => {
 
     passport.serializeUser((user, done) => {
-        done(null, user.id);
+        done(null, user);
     });
 
     passport.deserializeUser((user, done) => {

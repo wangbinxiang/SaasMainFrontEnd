@@ -1,5 +1,5 @@
 export async function showRegister(ctx, next) {
-
+    console.log(ctx.session);
     const title = '注册';
     const pageJs = webpackIsomorphicTools.assets().javascript.app;
     // ctx.cookies.set('test', 'signUp');
