@@ -1,15 +1,13 @@
 import Router from 'koa-router';
 import passport from 'koa-passport';
-import { showRegister, register, showLogIn, logIn } from '../../controllers/auth';
+import { showRegister, register, showLogIn, logIn, logOut } from '../../controllers/auth';
+import { requiresLogin } from '../../middlewares/authorization';
 
 const router = Router();
 
 //注册页面
 router.get('/register', async (ctx, next) => {
-    console.log(Router.url('signup'));
-    console.log('signStart');
     await next();
-    console.log('signEnd');
 }, showRegister);
 
 //注册
@@ -48,9 +46,9 @@ router.post('/login',
 );
 
 //退出登录
-router.get('signout', async (ctx, next) => {
-
-});
+router.get('/logout', 
+    logOut
+);
 
 // router.post('/custom', async (ctx, next) => {
 //     return passport.authenticate('local', function(user, info, status) {
