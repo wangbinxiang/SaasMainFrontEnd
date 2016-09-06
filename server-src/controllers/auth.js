@@ -1,4 +1,4 @@
-export async function showSignUp(ctx, next) {
+export async function showRegister(ctx, next) {
 
     const title = '注册';
     const pageJs = webpackIsomorphicTools.assets().javascript.app;
@@ -10,19 +10,21 @@ export async function showSignUp(ctx, next) {
     });
 }
 
-export async function signUp(ctx, next) {
+export async function register(ctx, next) {
     
 }
 
-export async function showSignIn(ctx, next) {
-
+export async function showLogIn(ctx, next) {
+    if (ctx.header.referer) {
+        ctx.session.returnTo = ctx.header.referer;
+    };
     const title = '登录';
 
     const pageJs = webpackIsomorphicTools.assets().javascript.app;
     // ctx.cookies.set('test', 'signUp');
     // ctx.cookies.set('test2', 'signUp2');
 
-    await ctx.render('auth/signin', {
+    await ctx.render('auth/login', {
         title, pageJs
     });
 }
@@ -32,7 +34,11 @@ export async function logIn(ctx, next) {
     const title = '登陆';
     let info = '登陆成功';
 
-    await ctx.render('common/info', {
-        title, info
-    });
+    let redirectTo = ctx.session.returnTo? ctx.session.returnTo: '/';
+
+    ctx.redirect(redirectTo);
+
+    // await ctx.render('common/info', {
+    //     title, info, redirectTo
+    // });
 }

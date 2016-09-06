@@ -1,16 +1,16 @@
 import Router from 'koa-router';
 import passport from 'koa-passport';
-import { showSignUp, showSignIn, logIn} from '../../controllers/auth';
+import { showRegister, register, showLogIn, logIn } from '../../controllers/auth';
 
 const router = Router();
 
 //注册页面
-router.get('/signup', async (ctx, next) => {
+router.get('/register', async (ctx, next) => {
     console.log(Router.url('signup'));
     console.log('signStart');
     await next();
     console.log('signEnd');
-}, showSignUp);
+}, showRegister);
 
 //注册
 router.post('/signup', async (ctx, next) => {
@@ -19,12 +19,9 @@ router.post('/signup', async (ctx, next) => {
 
 
 //登陆页面
-router.get('/signin', async (ctx, next) => {
-    console.log(Router.url('signin'));
-    console.log('signStart');
+router.get('/login', async (ctx, next) => {
     await next();
-    console.log('signEnd');
-}, showSignIn);
+}, showLogIn);
 
 
 //登陆
@@ -43,9 +40,9 @@ router.get('/signin', async (ctx, next) => {
 //     })
 //     await middleware.call(this, ctx, next)
 // });
-router.post('/signin', 
+router.post('/login', 
     passport.authenticate('local', {
-        failureRedirect: '/signin'
+        failureRedirect: '/login'
     }),
     logIn
 );
