@@ -5,7 +5,7 @@ export async function showRegister(ctx, next) {
     // ctx.cookies.set('test', 'signUp');
     // ctx.cookies.set('test2', 'signUp2');
 
-    await ctx.render('auth/signup', {
+    await ctx.render('auth/register', {
         title, pageJs
     });
 }
@@ -41,4 +41,9 @@ export async function logIn(ctx, next) {
     // await ctx.render('common/info', {
     //     title, info, redirectTo
     // });
+}
+
+export async function logOut(ctx, next) {
+    ctx.logout()
+    ctx.redirect('/')
 }
