@@ -2,12 +2,14 @@
 // import AuthService from '../models/application/AuthService';
 // import User from '../models/model/User';
 
-// import RequestJsonApi from '../libs/RequestJsonApi';
+import RequestJsonApi from '../libs/RequestJsonApi';
+import SaasApiServiceLocation from '../models/apiServiceLocation/SaasApiServiceLocation';
 
 export default async (ctx, next) => {
   const title = '首页';
   const bodyclass = 'saasIndex'
 
+  
   // const authService = new AuthService();
 
   // const user = await authService.login(123, 123, User);
@@ -23,7 +25,7 @@ export default async (ctx, next) => {
   //         }
   //     }
   // };
-  // const requestJsonApi = new RequestJsonApi(SaasApiServiceLocation.get(), '/users/signIn', data);
+  // const requestJsonApi = new RequestJsonApi(SaasApiServiceLocation.get(), '/users', data);
   // const { header, body } = await requestJsonApi.post();
   // console.log(header);
   // console.log(header.statusCode);
