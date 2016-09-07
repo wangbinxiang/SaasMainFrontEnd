@@ -2,7 +2,7 @@ import RequestJsonApi from '../../libs/RequestJsonApi';
 import SaasApiServiceLocation from '../apiServiceLocation/SaasApiServiceLocation';
 import UserTranslator from '../translator/UserTranslator';
 import RequestJsonApiUsers from '../request/RequestJsonApiUsers';
-import { userLoginIn } from '../../config/apiFeatureConf';
+import { userLoginIn, userSignUp, userUpdatePassword, userRestPassword } from '../../config/apiFeatureConf';
 
 export default class UserAdapter {
     constructor() {
@@ -11,6 +11,36 @@ export default class UserAdapter {
     buidJsonApiRequest(host, url, data) {
         return new RequestJsonApi(host, url, data);
     }
+
+    signup(passport, password, aUserClass) {
+
+        //初始化request
+        const requestJsonApiUsers = new RequestJsonApiUsers(userSignUp, { cellPhone: passport,
+            password: password
+        });
+
+        return (async () => {
+            let user = null;
+            try {
+                //获取response
+                const { header, body } = await requestJsonApiUsers.request();
+                if (header.statusCode === 201) {
+                    user = new UserTranslator().toUserFromJsonApiBody(body, aUserClass);
+                } else if (header.statusCode === 409) {
+                    throw new Error('409 Error params');
+                } else {
+                    throw new Error('Invalid status');
+                }
+            } catch(err) {
+                throw err;
+            }
+            return user;
+        })();
+
+    }
+
+
+
 
     //验证用户 async函数
     verification(passport, password, aUserClass) {

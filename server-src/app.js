@@ -39,7 +39,7 @@ const bodyparser = Bodyparser()
 // })
 
 // middlewares
-app.use(convert(bodyparser))//body数据解析中间件
+app.use(Bodyparser())//body数据解析中间件
 app.use(convert(json()))
 app.use(convert(logger()))
 

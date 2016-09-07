@@ -1,5 +1,5 @@
 import { GET, POST, PUT, DEL } from '../../config/httpMethodConf';
-import { userLoginIn } from '../../config/apiFeatureConf';
+import { userLoginIn, userSignUp, userUpdatePassword, userRestPassword } from '../../config/apiFeatureConf';
 import RequestJsonApi from '../../libs/RequestJsonApi';
 import SaasApiServiceLocation from '../apiServiceLocation/SaasApiServiceLocation';
 /**
@@ -21,8 +21,18 @@ export default class RequestJsonApiUsers {
     }
 
     usersSignUpPost() {
-        let url = ''
-        return this;
+        let url = '/users';
+        this.url = url;
+
+        this.method = POST;
+
+        let attributes = {
+            cellPhone: this.originData.cellPhone, 
+            password: this.originData.password
+        };
+
+        this.buildData(attributes);
+
     }
 
     userLoginIn() {
@@ -38,7 +48,6 @@ export default class RequestJsonApiUsers {
 
         this.buildData(attributes);
 
-        return this;
     }
 
     usersUpdatePasswordPut() {
@@ -84,6 +93,9 @@ export default class RequestJsonApiUsers {
         switch(this.feature) {
             case userLoginIn:
                 this.userLoginIn();
+                break;
+            case userSignUp:
+                this.usersSignUpPost();
                 break;
             default:
                 throw new Error('Invalid http method');

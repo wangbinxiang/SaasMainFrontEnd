@@ -1,25 +1,23 @@
 import Router from 'koa-router';
 import passport from 'koa-passport';
-import { showRegister, register, showLogIn, logIn, logOut } from '../../controllers/auth';
+import { showRegister, register, phoneNum, verificationCode, showLogIn, logIn, logOut } from '../../controllers/authenticate';
 import { requiresLogin } from '../../middlewares/authorization';
 
 const router = Router();
 
 //注册页面
-router.get('/register', async (ctx, next) => {
-    await next();
-}, showRegister);
+router.get('/register', showRegister);
 
 //注册
-router.post('/signup', async (ctx, next) => {
+router.post('/register', register);
 
-});
+router.get('/register/verification_code', verificationCode);
 
+//验证手机验证码
+router.post('/register/phone_num', phoneNum);
 
 //登陆页面
-router.get('/login', async (ctx, next) => {
-    await next();
-}, showLogIn);
+router.get('/login', showLogIn);
 
 
 //登陆
@@ -46,9 +44,7 @@ router.post('/login',
 );
 
 //退出登录
-router.get('/logout', 
-    logOut
-);
+router.get('/logout', logOut);
 
 // router.post('/custom', async (ctx, next) => {
 //     return passport.authenticate('local', function(user, info, status) {
