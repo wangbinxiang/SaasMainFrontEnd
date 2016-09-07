@@ -1,4 +1,5 @@
 import AuthenticateService from '../models/application/AuthenticateService';
+import VerificationCodeService from '../models/application/VerificationCodeService';
 import User from '../models/model/User';
 import moment from 'moment';
 
@@ -34,13 +35,19 @@ export async function register(ctx, next) {
     });
 }
 
-export async function verificationCode(ctx, next) {
-    console.log(moment().unix());
+export async function sendRegisterVerificationCode(ctx, next) {
+    let cellPhone  = ctx.query.cellPhone;
+
+    const verificationCodeService = new VerificationCodeService(ctx.session);
+    verificationCodeService.sendRegister(cellPhone);
+
+
+    // console.log(moment().unix());
     //检查session是否发送
-    let high = 999999;
-    let low = 100000;
-    let code = Math.floor(Math.random() * (high - low + 1) + low);
-    console.log(code);
+    // let high = 999999;
+    // let low = 100000;
+    // let code = Math.floor(Math.random() * (high - low + 1) + low);
+    // console.log(code);
     //检查手机号是否正确
     //生成验证码
     //发送验证码
@@ -51,13 +58,14 @@ export async function verificationCode(ctx, next) {
 export async function phoneNum(ctx, next) {
 
     let cellPhone  = ctx.request.body.cellPhone;
+    console.log(cellPhone);
     //生成验证码
         
     //检查验证时间
     //一分钟之后才可再次验证
-    ctx.session.registerVerificationTime = '';
+    // ctx.session.registerVerificationTime = '';
 
-
+    ctx.body = { success: true };
     //发送验证码
     
     //返回发送成功

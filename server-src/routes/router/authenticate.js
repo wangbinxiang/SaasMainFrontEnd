@@ -1,6 +1,6 @@
 import Router from 'koa-router';
 import passport from 'koa-passport';
-import { showRegister, register, phoneNum, verificationCode, showLogIn, logIn, logOut } from '../../controllers/authenticate';
+import { showRegister, register, phoneNum, sendRegisterVerificationCode, showLogIn, logIn, logOut } from '../../controllers/authenticate';
 import { requiresLogin } from '../../middlewares/authorization';
 
 const router = Router();
@@ -11,10 +11,10 @@ router.get('/register', showRegister);
 //注册
 router.post('/register', register);
 
-router.get('/register/verification_code', verificationCode);
+router.get('/register/verification-code', sendRegisterVerificationCode);
 
 //验证手机验证码
-router.post('/register/phone_num', phoneNum);
+router.post('/register/phone-num', phoneNum);
 
 //登陆页面
 router.get('/login', showLogIn);
