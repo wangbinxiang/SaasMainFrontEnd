@@ -7,8 +7,9 @@
  */
 export async function showAuditForm(ctx, next) {
     const title = '资料审核';
+    const pageJs = webpackIsomorphicTools.assets().javascript.information;
 
     await ctx.render('information/auditForm', {
-        title
+        title, pageJs
     });
 }
