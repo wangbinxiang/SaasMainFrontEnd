@@ -44,7 +44,7 @@ app.use(convert(json()))
 app.use(convert(logger()))
 
 //session
-app.keys = ['your-session-secret'];
+app.keys = ['saas-mian-front'];
 app.use(convert(session({
   // store: new mysqlSession(config.sessionDb),
   store: memcacheSession(config.get('memcache')),
@@ -150,7 +150,7 @@ app.on('error', async (err, ctx) => {
   console.log('error occured:', err)
 })
 
-const port = parseInt(config.port || '3000')
+const port = parseInt(config.get('port') || '3000')
 const server = http.createServer(app.callback())
 
 server.listen(port)

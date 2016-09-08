@@ -45,8 +45,5 @@ client/js/pages/*
 
 config/production.json
 
-production.json
-
-
 webpack-assets.json
 webpack-stats.json
