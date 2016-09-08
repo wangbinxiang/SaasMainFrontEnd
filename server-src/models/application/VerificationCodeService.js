@@ -21,7 +21,7 @@ export default class VerificationCodeService {
 
     }
 
-
+}
 
     //发送验证码 手机号 验证码名称
     
