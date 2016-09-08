@@ -1,3 +1,3 @@
-default class verificationCodeService {
+export default class verificationCodeService {
 
 }
