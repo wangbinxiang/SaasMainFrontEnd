@@ -1,5 +1,5 @@
 import { GET, POST, PUT, DEL } from '../../config/httpMethodConf';
-import { userLoginIn, userSignUp, userUpdatePassword, userRestPassword } from '../../config/apiFeatureConf';
+import { USER_LOGIN, USER_SIGNUP, USER_UPDATE_PASSWORD, USER_REST_PASSWORD } from '../../config/apiFeatureConf';
 import RequestJsonApi from '../../libs/RequestJsonApi';
 import SaasApiServiceLocation from '../apiServiceLocation/SaasApiServiceLocation';
 /**
@@ -91,14 +91,14 @@ export default class RequestJsonApiUsers {
 
     buildFeature() {
         switch(this.feature) {
-            case userLoginIn:
+            case USER_LOGIN:
                 this.userLoginIn();
                 break;
-            case userSignUp:
+            case USER_SIGNUP:
                 this.usersSignUpPost();
                 break;
             default:
-                throw new Error('Invalid http method');
+                throw new Error('Invalid feature method');
         }
     }
 

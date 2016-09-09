@@ -1,4 +1,4 @@
-import UserAdapter, { verification } from '../adapter/userAdapter';
+import UserAdapter, { verification } from '../adapter/UserAdapter';
 
 //用户认证服务类
 export default class AuthenticateService {

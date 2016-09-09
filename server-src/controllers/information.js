@@ -5,11 +5,11 @@
  * @date   2016-09-07T11:21:08+0800
  * @return {[type]}                 [description]
  */
-export async function showAuditForm(ctx, next) {
+export async function showApplyForm(ctx, next) {
     const title = '资料审核';
     const pageJs = webpackIsomorphicTools.assets().javascript.information;
 
-    await ctx.render('information/auditForm', {
+    await ctx.render('information/apply', {
         title, pageJs
     });
 }
