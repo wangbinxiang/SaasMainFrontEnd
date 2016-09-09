@@ -2,7 +2,7 @@ import RequestJsonApi from '../../libs/RequestJsonApi';
 import SaasApiServiceLocation from '../apiServiceLocation/SaasApiServiceLocation';
 import UserTranslator from '../translator/UserTranslator';
 import RequestJsonApiUsers from '../request/RequestJsonApiUsers';
-import { userLoginIn, userSignUp, userUpdatePassword, userRestPassword } from '../../config/apiFeatureConf';
+import { USER_LOGIN, USER_SIGNUP, USER_UPDATE_PASSWORD, USER_REST_PASSWORD } from '../../config/apiFeatureConf';
 
 export default class UserAdapter {
     constructor() {
@@ -15,7 +15,7 @@ export default class UserAdapter {
     signup(passport, password, aUserClass) {
 
         //初始化request
-        const requestJsonApiUsers = new RequestJsonApiUsers(userSignUp, { cellPhone: passport,
+        const requestJsonApiUsers = new RequestJsonApiUsers(USER_SIGNUP, { cellPhone: passport,
             password: password
         });
 
@@ -48,7 +48,7 @@ export default class UserAdapter {
         // 1 设置地址， 2设置数据
         // const request = this.buidJsonApiRequest(host, url, data);
 
-        const requestJsonApiUsers = new RequestJsonApiUsers(userLoginIn, { cellPhone: passport,
+        const requestJsonApiUsers = new RequestJsonApiUsers(USER_LOGIN, { cellPhone: passport,
             password: password
         });
 

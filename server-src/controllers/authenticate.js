@@ -24,7 +24,7 @@ export async function register(ctx, next) {
     const authenticateService = new AuthenticateService();
     const user = await authenticateService.register(cellPhone, password, User);
 
-    if (user) {
+    if (!user) {
         ctx.redirect('/register');
     }
     let title    = '注册成功';

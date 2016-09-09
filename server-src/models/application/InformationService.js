@@ -3,10 +3,7 @@ export default class InformationService {
 
     }
 
-
     apply() {
         
     }
-
-
 }
