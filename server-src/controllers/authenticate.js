@@ -24,7 +24,7 @@ export async function register(ctx, next) {
     const authenticateService = new AuthenticateService();
     const user = await authenticateService.register(cellPhone, password, User);
 
-    if (user) {
+    if (!user) {
         ctx.redirect('/register');
     }
     let title    = '注册成功';
@@ -103,4 +103,23 @@ export async function logIn(ctx, next) {
 export async function logOut(ctx, next) {
     ctx.logout()
     ctx.redirect('/')
+}
+
+
+export async function showUpdatePassword(ctx, next) {
+    const title = '修改密码';
+
+    const pageJs = webpackIsomorphicTools.assets().javascript.auth;
+
+    await ctx.render('authhenticate/updatePassword', {
+        title, pageJs
+    });
+}
+
+
+export async function updatePassword(ctx, next) {
+
+    
+
+    ctx.redirect('/');   
 }

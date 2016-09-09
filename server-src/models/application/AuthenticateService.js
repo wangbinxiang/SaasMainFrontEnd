@@ -1,4 +1,4 @@
-import UserAdapter, { verification } from '../adapter/userAdapter';
+import UserAdapter from '../adapter/UserAdapter';
 
 //用户认证服务类
 export default class AuthenticateService {
@@ -17,6 +17,9 @@ export default class AuthenticateService {
         return this.userAdapter.verification(passport, password, aUserClass);
     }
 
+    updatePassword(uid, oldPassword, password, aUserClass) {
+        return this.userAdapter.updatePassword(uid, oldPassword, password, aUserClass);
+    }
 
     //获取用户
 }

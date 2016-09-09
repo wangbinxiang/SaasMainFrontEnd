@@ -13,8 +13,8 @@ $('#auditType').on('change', function(){
 })
 
 require.ensure([], function(require) {
-    let masonry11 = require('../../../client/js/vendors/masonry.pkgd.min')
-    let dropzone = require('../../../client/js/vendors/dropzone')   
+    let masonry11 = require('../../../client/js/vendors/masonry.pkgd.min');
+    let dropzone = require('../../../client/js/vendors/dropzone');  
     //var myDropzone = new dropzone("#drop", { url: "/file/post", dictDefaultMessage: "Drag Here"});
     
     dropzone.autoDiscover = false;
@@ -33,6 +33,22 @@ require.ensure([], function(require) {
                 else { done(); }
             }
         })
+    });
+
+
+
+    // () => {
+    //     require.ensure([], function(require) {
+    //         let area =  require('../../../client/js/vendors/area');
+    //         conosle.log(area)
+    //     });
+    // }
+})
+
+$('#province').click(() => {
+    require.ensure([], function(require) {
+        let area =  require('../vendors/area/area-1');
+        console.log(area)
     });
 })
 

@@ -4,13 +4,12 @@ export default class UserTranslator {
     constructor() {
     }
 
-    newUser (aUserClass, { id, cellPhone, nickName, userName, userCategory, userType, status, createTime }) {
+    newUser(aUserClass, { id, cellPhone, nickName, userName, userCategory, userType, status, createTime }) {
         return new aUserClass(id, cellPhone, nickName, userName, userCategory, userType, status, createTime);
     }
 
-    //翻译mock用户信息
-    
-    toUserFromJsonApiBody (body, aUserClass) {
+    //翻译users信息
+    toObject(body, aUserClass) {
 
         const bodyReader = new UserJsonApiBodyReader(body);
 

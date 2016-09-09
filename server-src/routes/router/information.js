@@ -1,9 +1,9 @@
 import Router from 'koa-router';
-import { showAuditForm } from '../../controllers/information';
+import { showApplyForm } from '../../controllers/information';
 
 const router = Router();
 
 
-router.get('/information/audit-form', showAuditForm);
+router.get('/information/apply', showApplyForm);
 
 export default router;
