@@ -34,28 +34,22 @@ require.ensure([], function(require) {
             }
         })
     });
-
-
-
-    // () => {
-    //     require.ensure([], function(require) {
-    //         let area =  require('../../../client/js/vendors/area');
-    //         conosle.log(area)
-    //     });
-    // }
 })
 
-$('#province').click(() => {
-    require.ensure([], function(require) {
-        let area =  require('../vendors/area/area-1');
-        console.log(area)
-    });
+require.ensure([], function(require) {
+    let area =  require('../vendors/area/area-1');
+    for (let province in area){
+        $('#province').append('<option value="' + province + '">' + area[province].name + '</option>')
+    }
+});
+
+$('#province').on('change', () => {
+    $('#city option:gt(0)').remove();
+    let city =  require('../vendors/area/area-' + $('#province').val());
+    for (let c in city){
+        $('#city').append('<option value="' + c + '">' + city[c].name + '</option>')
+    }
 })
-
-
-
-
-
 
 //Dropzone.options.drop = {
 //    paramName: "file", // The name that will be used to transfer the file
