@@ -13,3 +13,7 @@ export async function showApplyForm(ctx, next) {
         title, pageJs
     });
 }
+
+export async function apply(ctx, next) {
+    
+}

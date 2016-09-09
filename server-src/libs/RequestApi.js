@@ -1,27 +1,25 @@
 import RequestJsonApi from './RequestJsonApi';
+import { GET, POST, PUT, DEL } from '../config/httpMethodConf';
 
 export default class RequestApi {
     constructor(host, feature, originData) {
         this.host       = host;
         this.feature    = feature;
         this.originData = originData;
+        this.successCode = 200;
+        this.paramsErrorCode = 404;
     }
 
-    buildData(type, attributes) {
+    buildData(attributes) {
         this.data = {
             data: {
-                type: type,
+                type: this.dataType,
                 attributes: attributes
             }
         };
     }
 
-    buildData() {
-
-    }
-
     buildFeature() {
-
     }
 
     buildRequest() {

@@ -104,3 +104,22 @@ export async function logOut(ctx, next) {
     ctx.logout()
     ctx.redirect('/')
 }
+
+
+export async function showUpdatePassword(ctx, next) {
+    const title = '修改密码';
+
+    const pageJs = webpackIsomorphicTools.assets().javascript.auth;
+
+    await ctx.render('authhenticate/updatePassword', {
+        title, pageJs
+    });
+}
+
+
+export async function updatePassword(ctx, next) {
+
+    
+
+    ctx.redirect('/');   
+}

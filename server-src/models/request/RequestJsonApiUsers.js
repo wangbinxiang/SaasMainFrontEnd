@@ -1,18 +1,22 @@
-import { GET, POST, PUT, DEL } from '../../config/httpMethodConf';
+import RequestApi from '../../libs/RequestApi';
+import { GET, POST, PUT } from '../../config/httpMethodConf';
 import { USER_LOGIN, USER_SIGNUP, USER_UPDATE_PASSWORD, USER_REST_PASSWORD } from '../../config/apiFeatureConf';
 import RequestJsonApi from '../../libs/RequestJsonApi';
 import SaasApiServiceLocation from '../apiServiceLocation/SaasApiServiceLocation';
 /**
  * users接口 jsonapi 数据类
  */
-export default class RequestJsonApiUsers {
+export default class RequestJsonApiUsers extends RequestApi {
     constructor(feature, originData) {
-        this.feature = feature;
-        this.host = SaasApiServiceLocation.get();
-        this.originData = originData;
+        // this.feature = feature;
+        // this.host = SaasApiServiceLocation.get();
+        // this.originData = originData;
+        let host = SaasApiServiceLocation.get();
+        super(host, feature, originData);
+        this.dataType = 'users';
     }
 
-    usersGet(ids = '') {
+    get(ids = '') {
         let url = '/users';
         url = url + (ids? '/' + ids: '');
         //有ids 是获取指定id的用户信息，没有ids则获取用户信息列表
@@ -20,11 +24,14 @@ export default class RequestJsonApiUsers {
         return this;
     }
 
-    usersSignUpPost() {
+    signup() {
         let url = '/users';
         this.url = url;
 
         this.method = POST;
+
+        this.successCode = 201;
+        this.paramsErrorCode = 409;
 
         let attributes = {
             cellPhone: this.originData.cellPhone, 
@@ -35,7 +42,7 @@ export default class RequestJsonApiUsers {
 
     }
 
-    userLoginIn() {
+    login() {
         let url = '/users/signIn';
         this.url = url;
 
@@ -47,63 +54,38 @@ export default class RequestJsonApiUsers {
         };
 
         this.buildData(attributes);
-
     }
 
-    usersUpdatePasswordPut() {
+    updatePassword() {
+        let url = '/user/' + this.originData.uid + '/updatePassword';
 
-    }
+        this.method = PUT;
 
-
-    usersRestPasswordPut() {
-
-    }
-
-    buildData(attributes) {
-        this.data = {
-            data: {
-                type: 'users',
-                attributes: attributes
-            }
-        };
-    }
-
-    request() {
-        this.buildFeature();
-        this.buildRequest();
-        switch(this.method) {
-            case GET:
-                return this.request.get();
-                break;
-            case POST:
-                return this.request.post();
-                break;
-            case PUT:
-                return this.request.put();
-                break;
-            case DEL:
-                return this.request.del();
-                break;
-            default:
-                throw new Error('Invalid http method');
+        let attributes = {
+            oldPassword: this.originData.oldPassword, 
+            password: this.originData.password
         }
+
+        this.buildData(attributes);
     }
+
+    // usersRestPasswordPut() {
+
+    // }
 
     buildFeature() {
         switch(this.feature) {
             case USER_LOGIN:
-                this.userLoginIn();
+                this.login();
                 break;
             case USER_SIGNUP:
-                this.usersSignUpPost();
+                this.signup();
                 break;
+            case USER_UPDATE_PASSWORD:
+                this.updatePassword();
             default:
                 throw new Error('Invalid feature method');
         }
-    }
-
-    buildRequest() {
-        this.request = new RequestJsonApi(this.host, this.url, this.data);
     }
 }
 
