@@ -1,8 +1,8 @@
 import ApplicationJsonApiBodyReader from '../reader/ApplicationJsonApiBodyReader';
 import Translator from '../../libs/Translator';
 
-export default class InformationTranslator {
-    construct() {
+export default class InformationTranslator extends Translator {
+    constructor() {
         super();
     }
 

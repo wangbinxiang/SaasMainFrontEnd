@@ -3,7 +3,7 @@ import { GET, POST, PUT, DEL } from '../../config/httpMethodConf';
 import SaasApiServiceLocation from '../apiServiceLocation/SaasApiServiceLocation';
 import { INFORMATION_APPLY } from '../../config/apiFeatureConf';
 
-export defalut class ApplicationRequestJsonApi extends RequestApi {
+export default class ApplicationRequestJsonApi extends RequestApi {
     constructor(feature, originData) {
         let host = SaasApiServiceLocation.get();
         super(host, feature, originData);
