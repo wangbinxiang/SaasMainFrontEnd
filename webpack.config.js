@@ -52,6 +52,12 @@ var config = {
         'NODE_ENV': JSON.stringify(env)
       }
     }),
+    new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
+        "window.jQuery": "jquery"
+    }),
+    new webpack.optimize.CommonsChunkPlugin({ name: "commons", filename: "commons.js", minChunks: 2 }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),

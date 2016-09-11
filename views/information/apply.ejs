@@ -1,0 +1,189 @@
+﻿<%- include('../layout/header') -%>
+<nav aria-label="You are here:" role="navigation" class="clearfix">
+	<ul class="breadcrumbs onionLink">
+		<li><a href="index.html">首页</a></li>
+		<li><a href="indexCP.html">用户中心</a></li>
+		<li>
+			<span class="show-for-sr">Current: </span> 资料审核
+		</li>
+	</ul>
+</nav>
+
+<h1 class="row column">用户资料审核</h1>
+
+<!--<div class="row block-margin-bottom">
+	<div class="workflow-wrap">
+		<div class="workflow-bar prec1"></div>
+		<ol class="workflow-label">
+			<li class="lb passed"><b><s></s></b>提交订单</li>
+			<li class="lb passed"><b><s></s></b>支付订单</li>
+			<li class="lb"><b><s></s></b>等待收货</li>
+			<li class="lb"><b><s></s></b>完成</li>
+		</ol>
+	</div>
+</div>-->
+
+<div class="row column">
+	<div class="callout alert">
+		<h4>您已成功注册为云游用户，提交资料审核后即可开通店铺！</h4>
+		<p>审核资料需要2个工作日完成审核。</p>
+	</div>
+</div>
+
+<div class="row column">
+	<div class="callout success">
+		<h4>审核资料已成功提交！</h4>
+		<p>审核资料需要2个工作日完成审核，请耐心等待。</p>
+	</div>
+</div>
+
+<div class="row column">
+	<div class="callout alert">
+		<h4>审核资料审核失败！</h4>
+		<p>请按如下的错误变更审核资料。</p>
+		<ul>
+			<li>身份证反面错误</li>
+			<li>营业执照扫描件不清晰</li>
+		</ul>
+	</div>
+</div>
+
+<div class="row column">
+	<div class="callout success">
+		<h4>您的资料已成功通过审核！</h4>
+		<p>您可以随时变更您的审核资料。</p>
+	</div>
+</div>
+
+<div class="row column">
+	<form data-abide novalidate>
+		<div data-abide-error class="alert callout" style="display: none;">
+			<p><i class="fi-alert"></i> There are some errors in your form.</p>
+		</div>
+		<fieldset class="fieldset">
+			<legend><h4>选择卖家类型</h4></legend>
+			<div class="row">
+				<fieldset class="columns" id="auditType">
+					<input type="radio" name="pokemon" checked value="Reds" id="pokemonRed"><label for="pokemonRed">商社</label>
+					<input type="radio" name="pokemon" value="Blue" id="pokemonBlueOne"><label for="pokemonBlueOne">个体</label>
+				</fieldset>
+			</div>
+		</fieldset>
+
+		<fieldset class="fieldset">
+			<legend><h4>个人信息</h4></legend>
+			<div class="row">
+				<div class="medium-6 columns">
+					<label>身份证正面图片</label>
+					<div class="dropzone dropzones dropzone-single"></div>
+				</div>
+				<div class="medium-6 columns">
+					<label>身份证背面图片</label>
+					<div class="dropzone dropzones dropzone-single"></div>
+				</div>
+			</div>
+			<div class="row hideforagency">
+				<div class="medium-6 columns">
+					<label>导游证图片</label>
+					<div class="dropzone dropzones dropzone-single"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="medium-6 columns">
+					<label class="autoSelect">
+						联系人
+						<input type="text" required>
+					</label>
+				</div>
+				<div class="medium-6 columns">
+					<label>
+						联系人电话
+						<input type="text" required>
+					</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="medium-6 columns">
+					<label>
+						联系人QQ
+						<input type="text" required>
+					</label>
+				</div>
+				<div class="medium-6 columns">
+					<label class="autoSelect">
+						<span>所在地区</span>
+						<select id="province"><option>请选择省</option></select>
+						<select id="city"><option>请选择市</option></select>
+					</label>
+				</div>
+			</div>
+		</fieldset>
+
+		<fieldset class="fieldset hideforone">
+			<legend><h4>商社信息</h4></legend>
+			<div class="row">
+				<div class="small-12 columns">
+					<label>
+						商社名称
+						<input type="text" placeholder="" required pattern="number">
+						<span class="form-error">
+							Yo, you had better fill this out, it's required.
+						</span>
+					</label>
+				</div>
+			</div>
+			<div class="row">
+				<fieldset class="columns">
+					<legend>商社类型</legend>
+					<input type="radio" name="typeHost" value="Reds" id="typeHost0"><label for="typeHost0">组团社</label>
+					<input type="radio" name="typeHost" value="Blue" id="typeHost1"><label for="typeHost1">批发商</label>
+					<input type="radio" name="typeHost" value="Blue" id="typeHost2"><label for="typeHost2">地接社</label>
+				</fieldset>
+			</div>
+			<div class="row">
+				<div class="medium-6 columns">
+					<label>授权书图片</label>
+					<div class="dropzone dropzones dropzone-single"></div>
+				</div>
+				<div class="medium-6 columns">
+					<label>备案登记证明图片</label>
+					<div class="dropzone dropzones dropzone-single"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="medium-6 columns">
+					<label>营业执照图片</label>
+					<div class="dropzone dropzones dropzone-single"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="medium-6 columns">
+					<label class="autoSelect">
+						银行卡持卡人姓名
+						<input type="text" required>
+					</label>
+				</div>
+				<div class="medium-6 columns">
+					<label>
+						银行卡卡号
+						<input type="text" required>
+					</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="medium-6 columns">
+					<label>
+						银行预留手机
+						<input type="text" required>
+					</label>
+				</div>
+			</div>
+		</fieldset>
+
+	</form>
+</div>
+
+<div class="row text-center form-submit-wrap">
+	<a href="" class="button large">提交审核资料</a>
+</div>
+<%- include('../layout/footer') -%>

@@ -1,65 +1,51 @@
-import RequestJsonApi from '../../libs/RequestJsonApi';
-import SaasApiServiceLocation from '../apiServiceLocation/SaasApiServiceLocation';
+import Adapter from '../../libs/Adapter';
 import UserTranslator from '../translator/UserTranslator';
-import RequestJsonApiUsers from '../request/RequestJsonApiUsers';
-import { userLoginIn } from '../../config/apiFeatureConf';
+import UsersRequestJsonApi from '../request/UsersRequestJsonApi';
+import { USER_LOGIN, USER_SIGNUP, USER_UPDATE_PASSWORD, USER_REST_PASSWORD } from '../../config/apiFeatureConf';
 
-export default class UserAdapter {
+export default class UserAdapter extends Adapter {
     constructor() {
+        super();
+        this.translator = new UserTranslator();
     }
 
-    buidJsonApiRequest(host, url, data) {
-        return new RequestJsonApi(host, url, data);
+    buildRequest(apiFeature, data) {
+        this.requestObject = new UsersRequestJsonApi(apiFeature, data);
+    }
+
+    signup(passport, password, aUserClass) {
+        this.buildRequest(USER_SIGNUP, { 
+            cellPhone: passport,
+            password: password
+        });
+
+        this.activeClass = aUserClass;
+
+        return this.request();
     }
 
     //验证用户 async函数
     verification(passport, password, aUserClass) {
-        //获取地址和数据的方法分离。
-        // 1 设置地址， 2设置数据
-        // const request = this.buidJsonApiRequest(host, url, data);
-
-        const requestJsonApiUsers = new RequestJsonApiUsers(userLoginIn, { cellPhone: passport,
+        this.buildRequest(USER_LOGIN, { 
+            cellPhone: passport,
             password: password
         });
 
-        return (async () => {
-            let user = null;
-            try {
+        this.activeClass = aUserClass;
 
-                const { header, body } = await requestJsonApiUsers.request();
-                // const { header, body } = await request.post();
-
-                if (header.statusCode === 200) {
-                    user = new UserTranslator().toUserFromJsonApiBody(body, aUserClass);
-                } else if (header.statusCode === 404) {
-                    throw new Error('404 Error params');
-                } else {
-                    throw new Error('Invalid status');
-                }
-            } catch(err) {
-                throw err;
-            }
-            return user;
-        })();
-        //获取request请求类 promise
-        // const requestJsonApi = new RequestJsonApi('https://api.github.com');
-        // (async () => {
-        //     const { res, body } = await requestJsonApi.get('/');
-        //     console.log(body)
-        // })();
-        //request请求数据
-        
-        //判断请求结果是否是 200
-        
-        //userMockTranslator转换类转换 response 成为 user对象
+        return this.request();
     }
 
-    //获取用户信息
-}
 
-// export async function verification() {
-//     const requestJsonApi = new RequestJsonApi('https://api.github.com');
-//     const { res, body } = await requestJsonApi.get('/');
-//     console.log(body);
-//     return body;
-// }
+
+    updatePassword(uid, oldPassword, password, aUserClass) {
+        this.requestObject = new RequestJsonApiUsers(USER_UPDATE_PASSWORD, { 
+            uid: uid,
+            oldPassword: oldPassword,
+            password: password
+        });
+        this.activeClass = aUserClass;
+
+        return this.request();
+    }
+}

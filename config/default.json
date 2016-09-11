@@ -19,5 +19,6 @@
     "host": "121.199.18.127",
     "port": 11211
   },
-  "cookieExpired": 86400
+  "cookieExpired": 86400,
+  "port": 3000
 }
