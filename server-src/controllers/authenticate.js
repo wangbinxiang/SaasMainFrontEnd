@@ -1,6 +1,5 @@
 import AuthenticateService from '../models/application/AuthenticateService';
 import VerificationCodeService from '../models/application/VerificationCodeService';
-import User from '../models/model/User';
 import moment from 'moment';
 
 export async function showRegister(ctx, next) {
@@ -22,7 +21,7 @@ export async function register(ctx, next) {
     let rePassword = ctx.request.body.rePassword;
 
     const authenticateService = new AuthenticateService();
-    const user = await authenticateService.register(cellPhone, password, User);
+    let user = await authenticateService.register(cellPhone, password);
 
     if (!user) {
         ctx.redirect('/register');
@@ -71,7 +70,7 @@ export async function phoneNum(ctx, next) {
     //返回发送成功
 }
 
-export async function showLogIn(ctx, next) {
+export async function showLogin(ctx, next) {
     if (ctx.header.referer) {
         ctx.session.returnTo = ctx.header.referer;
     };
@@ -86,21 +85,17 @@ export async function showLogIn(ctx, next) {
     });
 }
 
-export async function logIn(ctx, next) {
+export async function login(ctx, next) {
 
     const title = '登陆';
     let info = '登陆成功';
 
     let redirectTo = ctx.session.returnTo? ctx.session.returnTo: '/';
 
-    ctx.redirect(redirectTo);
-
-    // await ctx.render('common/info', {
-    //     title, info, redirectTo
-    // });
+    ctx.redirect('/');
 }
 
-export async function logOut(ctx, next) {
+export async function logout(ctx, next) {
     ctx.logout()
     ctx.redirect('/')
 }

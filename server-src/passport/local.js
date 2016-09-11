@@ -1,7 +1,6 @@
 import { Strategy } from 'passport-local';
 
 import AuthenticateService from '../models/application/AuthenticateService';
-import User from '../models/model/User';
 
 export default new Strategy(
     {
@@ -11,7 +10,7 @@ export default new Strategy(
         try {
             //过去用户登录信息
             const authenticateService = new AuthenticateService();
-            const user = await authenticateService.login(passport, password, User);
+            const user = await authenticateService.login(passport, password);
             if (user) {
                 done(null, user);
             } else {

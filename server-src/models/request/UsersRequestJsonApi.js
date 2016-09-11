@@ -6,11 +6,8 @@ import SaasApiServiceLocation from '../apiServiceLocation/SaasApiServiceLocation
 /**
  * users接口 jsonapi 数据类
  */
-export default class RequestJsonApiUsers extends RequestApi {
+export default class UsersRequestJsonApi extends RequestApi {
     constructor(feature, originData) {
-        // this.feature = feature;
-        // this.host = SaasApiServiceLocation.get();
-        // this.originData = originData;
         let host = SaasApiServiceLocation.get();
         super(host, feature, originData);
         this.dataType = 'users';

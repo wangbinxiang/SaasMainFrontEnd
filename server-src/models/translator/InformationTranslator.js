@@ -1,15 +1,10 @@
 import ApplicationJsonApiBodyReader from '../reader/ApplicationJsonApiBodyReader';
+import Translator from '../../libs/Translator';
 
 export default class InformationTranslator {
     construct() {
+        super();
     }
-
-    newInformation(aInformationClass, { id, title, contactPeople, contactPeoplePhone, contactPeopleQQ, province, city, address, identifyCardFrontPhoto, identifyCardBackPhoto, bankCardHolderName, bankCardNumber, bankCardCellphone, additionalInformation }) {
-
-        return new aInformationClass({ id, title, contactPeople, contactPeoplePhone, contactPeopleQQ, province, city, address, identifyCardFrontPhoto, identifyCardBackPhoto, bankCardHolderName, bankCardNumber, bankCardCellphone, additionalInformation });
-
-    }
-
 
     //翻译application信息
     toInformationFromJsonApiBody(body, aInformationClass) {
@@ -35,6 +30,6 @@ export default class InformationTranslator {
         let status             = bodyReader.value('status');
 
 
-        return this.newInformation(aInformationClass, { id, title, contactPeople, contactPeoplePhone, contactPeopleQQ, province, city, address, identifyCardFrontPhoto, identifyCardBackPhoto, bankCardHolderName, bankCardNumber, bankCardCellphone, additionalInformation });
+        return this.newObject(aInformationClass, { id, title, contactPeople, contactPeoplePhone, contactPeopleQQ, province, city, address, identifyCardFrontPhoto, identifyCardBackPhoto, bankCardHolderName, bankCardNumber, bankCardCellphone, additionalInformation });
     }
 }

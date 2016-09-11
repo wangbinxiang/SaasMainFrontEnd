@@ -3,7 +3,7 @@ import { GET, POST, PUT, DEL } from '../../config/httpMethodConf';
 import SaasApiServiceLocation from '../apiServiceLocation/SaasApiServiceLocation';
 import { INFORMATION_APPLY } from '../../config/apiFeatureConf';
 
-export defalut class RequestJsonApiApplication extends RequestApi {
+export defalut class ApplicationRequestJsonApi extends RequestApi {
     constructor(feature, originData) {
         let host = SaasApiServiceLocation.get();
         super(host, feature, originData);
@@ -32,6 +32,9 @@ export defalut class RequestJsonApiApplication extends RequestApi {
             bankCardCellphone: originData.bankCardCellphone,
             additionalInformation: originData.additionalInformation,
         }
+
+        this.successCode = 201;
+        this.paramsErrorCode = 409;
 
         this.buildData(attributes);
     }

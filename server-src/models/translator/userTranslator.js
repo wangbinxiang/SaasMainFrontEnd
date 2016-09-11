@@ -1,11 +1,9 @@
 import UserJsonApiBodyReader from '../reader/UserJsonApiBodyReader';
+import Translator from '../../libs/Translator';
 
-export default class UserTranslator {
+export default class UserTranslator extends Translator {
     constructor() {
-    }
-
-    newUser(aUserClass, { id, cellPhone, nickName, userName, userCategory, userType, status, createTime }) {
-        return new aUserClass(id, cellPhone, nickName, userName, userCategory, userType, status, createTime);
+        super();
     }
 
     //翻译users信息
@@ -21,9 +19,11 @@ export default class UserTranslator {
         let userType     = bodyReader.value('userType');
         let status       = bodyReader.value('status');
         let createTime   = bodyReader.value('createTime');
+        let updateTime   = bodyReader.value('updateTime');
+        let statusTime   = bodyReader.value('statusTime');
 
 
-        return this.newUser(aUserClass, { id, cellPhone, nickName, userName, userCategory, userType, status, createTime });
+        return this.newObject(aUserClass, { id, cellPhone, nickName, userName, userCategory, userType, status, createTime, updateTime, statusTime });
     }
 
 }

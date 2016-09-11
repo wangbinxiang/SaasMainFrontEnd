@@ -1,4 +1,5 @@
 import UserAdapter from '../adapter/UserAdapter';
+import User from '../model/User';
 
 //用户认证服务类
 export default class AuthenticateService {
@@ -7,18 +8,18 @@ export default class AuthenticateService {
     }
 
     //用户注册功能
-    register(passport, password, aUserClass) {
-        return this.userAdapter.signup(passport, password, aUserClass);
+    register(passport, password) {
+        return this.userAdapter.signup(passport, password, User);
     }
 
     //用户登录功能
-    login(passport, password, aUserClass) {
+    login(passport, password) {
         //用户适配器 
-        return this.userAdapter.verification(passport, password, aUserClass);
+        return this.userAdapter.verification(passport, password, User);
     }
 
-    updatePassword(uid, oldPassword, password, aUserClass) {
-        return this.userAdapter.updatePassword(uid, oldPassword, password, aUserClass);
+    updatePassword(uid, oldPassword, password) {
+        return this.userAdapter.updatePassword(uid, oldPassword, password, User);
     }
 
     //获取用户
