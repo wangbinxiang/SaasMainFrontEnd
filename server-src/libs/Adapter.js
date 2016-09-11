@@ -2,16 +2,15 @@ export default class Adapter {
     constructor() {
     }
 
-    request() {
-        const that = this;
-        return (async () => {
+    async request() {
+        // return (async () => {
             let result = null;
             try {
-                const { header, body } =  await that.requestObject.request();
-                if (header.statusCode === that.requestObject.successCode) {
-                    result = that.translator.toObject(body, that.activeClass);
-                } else if (header.statusCode === that.requestObject.paramsErrorCode) {
-                    throw new Error(that.paramsErrorCode + 'Error params');
+                const { header, body } =  await this.requestObject.request();
+                if (header.statusCode === this.requestObject.successCode) {
+                    result = this.translator.toObject(body, this.activeClass);
+                } else if (header.statusCode === this.requestObject.paramsErrorCode) {
+                    throw new Error(this.paramsErrorCode + 'Error params');
                 } else {
                     throw new Error('Invalid status');
                 }
@@ -19,7 +18,6 @@ export default class Adapter {
                 throw err;
             }
             return result;
-        })();
     }
 
 }
