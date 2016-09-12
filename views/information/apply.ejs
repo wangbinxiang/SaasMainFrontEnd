@@ -55,11 +55,12 @@
 	</div>
 </div>
 
-<div class="row column">
-	<form data-abide novalidate>
-		<div data-abide-error class="alert callout" style="display: none;">
-			<p><i class="fi-alert"></i> There are some errors in your form.</p>
-		</div>
+
+<form data-abide novalidate>
+	<div data-abide-error class="alert callout alert-form-error" style="display: none;">
+		<p><i class="fi-alert"></i> There are some errors in your form.</p>
+	</div>
+    <div class="row column">	
 		<fieldset class="fieldset">
 			<legend><h4>选择卖家类型</h4></legend>
 			<div class="row">
@@ -76,29 +77,47 @@
 				<div class="medium-6 columns">
 					<label>身份证正面图片</label>
 					<div class="dropzone dropzones dropzone-single"></div>
+                    <input type="text" required class="dz-src">
+                    <span class="form-error">
+						请上传身份证正面图片
+					</span>
 				</div>
 				<div class="medium-6 columns">
 					<label>身份证背面图片</label>
 					<div class="dropzone dropzones dropzone-single"></div>
+                    <input type="text" required class="dz-src">
+                    <span class="form-error">
+						请上传身份证背面图片
+					</span>
 				</div>
 			</div>
-			<div class="row hideforagency">
+			<div id="one-show" class="row hideforagency">
 				<div class="medium-6 columns">
 					<label>导游证图片</label>
 					<div class="dropzone dropzones dropzone-single"></div>
+                    <input type="text" required class="dz-src">
+                    <span class="form-error">
+						请上传导游证图片
+					</span>
 				</div>
 			</div>
 			<div class="row">
 				<div class="medium-6 columns">
-					<label class="autoSelect">
+					<label>
 						联系人
 						<input type="text" required>
+                        <span class="form-error">
+							请输入联系人姓名
+						</span>
 					</label>
 				</div>
 				<div class="medium-6 columns">
 					<label>
 						联系人电话
-						<input type="text" required>
+						<input type="text" required pattern="^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$">
+                        <span class="form-error">
+							请输入联系人电话
+						</span>
 					</label>
 				</div>
 			</div>
@@ -106,28 +125,31 @@
 				<div class="medium-6 columns">
 					<label>
 						联系人QQ
-						<input type="text" required>
+						<input type="text" required pattern="number">
+                        <span class="form-error">
+							请输入联系人QQ号码
+						</span>
 					</label>
 				</div>
 				<div class="medium-6 columns">
 					<label class="autoSelect">
 						<span>所在地区</span>
-						<select id="province"><option>请选择省</option></select>
-						<select id="city"><option>请选择市</option></select>
+						<select id="province" required><option value="">请选择省</option></select>
+						<select id="city" required><option value="">请选择市</option></select>
 					</label>
 				</div>
 			</div>
 		</fieldset>
 
-		<fieldset class="fieldset hideforone">
+		<fieldset class="fieldset hideforone" id="agency-show">
 			<legend><h4>商社信息</h4></legend>
 			<div class="row">
 				<div class="small-12 columns">
 					<label>
 						商社名称
-						<input type="text" placeholder="" required pattern="number">
+						<input type="text" placeholder="" required>
 						<span class="form-error">
-							Yo, you had better fill this out, it's required.
+							请输入商社名称
 						</span>
 					</label>
 				</div>
@@ -136,37 +158,59 @@
 				<fieldset class="columns">
 					<legend>商社类型</legend>
 					<input type="radio" name="typeHost" value="Reds" id="typeHost0"><label for="typeHost0">组团社</label>
-					<input type="radio" name="typeHost" value="Blue" id="typeHost1"><label for="typeHost1">批发商</label>
+					<input type="radio" name="typeHost" value="Blue" id="typeHost1" required><label for="typeHost1">批发商</label>
 					<input type="radio" name="typeHost" value="Blue" id="typeHost2"><label for="typeHost2">地接社</label>
+                    <span class="form-error">
+						请选择商社类型
+					</span>
 				</fieldset>
+                
 			</div>
 			<div class="row">
 				<div class="medium-6 columns">
 					<label>授权书图片</label>
 					<div class="dropzone dropzones dropzone-single"></div>
+                    <input type="text" required class="dz-src">
+                    <span class="form-error">
+						请上传授权书图片
+					</span>
 				</div>
 				<div class="medium-6 columns">
 					<label>备案登记证明图片</label>
 					<div class="dropzone dropzones dropzone-single"></div>
+                    <input type="text" required class="dz-src">
+                    <span class="form-error">
+						请上传备案登记证明图片
+					</span>
 				</div>
 			</div>
 			<div class="row">
 				<div class="medium-6 columns">
 					<label>营业执照图片</label>
 					<div class="dropzone dropzones dropzone-single"></div>
+                    <input type="text" required class="dz-src">
+                    <span class="form-error">
+						请上传营业执照图片
+					</span>
 				</div>
 			</div>
 			<div class="row">
 				<div class="medium-6 columns">
-					<label class="autoSelect">
+					<label>
 						银行卡持卡人姓名
 						<input type="text" required>
+                        <span class="form-error">
+						    请输入银行卡持卡人姓名
+					    </span>
 					</label>
 				</div>
 				<div class="medium-6 columns">
 					<label>
 						银行卡卡号
 						<input type="text" required>
+                        <span class="form-error">
+						    请输入银行卡号码
+					    </span>
 					</label>
 				</div>
 			</div>
@@ -174,16 +218,20 @@
 				<div class="medium-6 columns">
 					<label>
 						银行预留手机
-						<input type="text" required>
+						<input type="text" required pattern="^1[0-9]{10}$">
+                        <span class="form-error">
+						    请输入银行预留手机
+					    </span>
 					</label>
 				</div>
 			</div>
 		</fieldset>
+    </div>
 
-	</form>
-</div>
+    <div class="row text-center form-submit-wrap">
+	    <button type="submit" class="button large">提交审核资料</button>
+    </div>
+</form>
 
-<div class="row text-center form-submit-wrap">
-	<a href="" class="button large">提交审核资料</a>
-</div>
+
 <%- include('../layout/footer') -%>

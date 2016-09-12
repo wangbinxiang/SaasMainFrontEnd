@@ -10,6 +10,11 @@ $(document).foundation();
 
 $('#auditType').on('change', function(){
     $('.hideforone, .hideforagency').toggle();
+    if($('#one-show').hasClass('hideforagency')){
+        $('#agency-show input').removeAttr('required');
+    } else{
+        $('#agency-show input').attr('required');
+    }
 })
 
 require.ensure([], function(require) {
