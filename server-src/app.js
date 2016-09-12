@@ -60,7 +60,6 @@ passportRegister(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 // Add Webpak Dev Middleware
 import webpack from 'webpack'
 import { devMiddleware, hotMiddleware } from 'koa-webpack-middleware';

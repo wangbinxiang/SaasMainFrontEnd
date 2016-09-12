@@ -12,8 +12,8 @@ class ApiServiceLocation {
         __instance(this);
     }
 
-    get(apiType) {
-        const configLocation = this.apiServiceLocation + apiType;
+    get() {
+        const configLocation = this.apiServiceLocation + this.microServiceName;
         if (config.has(configLocation)) {
             return config.get(configLocation)
         } else {

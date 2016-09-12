@@ -5,10 +5,7 @@ import ApiServiceLocation from '../../libs/ApiServiceLocation';
 class SaasApiServiceLocation extends ApiServiceLocation {
     constructor(...args) {
         super(...args)
-    }
-
-    get(apiType = 'saas') {
-        return super.get(apiType)
+        this.microServiceName = 'saas';
     }
 }
 

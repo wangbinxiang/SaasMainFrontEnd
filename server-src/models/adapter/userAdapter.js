@@ -39,11 +39,12 @@ export default class UserAdapter extends Adapter {
 
 
     updatePassword(uid, oldPassword, password, aUserClass) {
-        this.requestObject = new RequestJsonApiUsers(USER_UPDATE_PASSWORD, { 
+        this.buildRequest(USER_UPDATE_PASSWORD, { 
             uid: uid,
             oldPassword: oldPassword,
             password: password
         });
+
         this.activeClass = aUserClass;
 
         return this.request();

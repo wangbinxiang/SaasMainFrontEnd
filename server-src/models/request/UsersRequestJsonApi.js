@@ -1,14 +1,13 @@
-import RequestApi from '../../libs/RequestApi';
+import BaseRequest from '../../libs/BaseRequest';
 import { GET, POST, PUT } from '../../config/httpMethodConf';
 import { USER_LOGIN, USER_SIGNUP, USER_UPDATE_PASSWORD, USER_REST_PASSWORD } from '../../config/apiFeatureConf';
-import RequestJsonApi from '../../libs/RequestJsonApi';
 import SaasApiServiceLocation from '../apiServiceLocation/SaasApiServiceLocation';
 /**
  * users接口 jsonapi 数据类
  */
-export default class UsersRequestJsonApi extends RequestApi {
+export default class UsersRequestJsonApi extends BaseRequest {
     constructor(feature, originData) {
-        let host = SaasApiServiceLocation.get();
+        const host = SaasApiServiceLocation.get();
         super(host, feature, originData);
         this.dataType = 'users';
     }
@@ -18,7 +17,6 @@ export default class UsersRequestJsonApi extends RequestApi {
         url = url + (ids? '/' + ids: '');
         //有ids 是获取指定id的用户信息，没有ids则获取用户信息列表
         this.url = url;
-        return this;
     }
 
     signup() {
@@ -80,6 +78,7 @@ export default class UsersRequestJsonApi extends RequestApi {
                 break;
             case USER_UPDATE_PASSWORD:
                 this.updatePassword();
+                break;
             default:
                 throw new Error('Invalid feature method');
         }

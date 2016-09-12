@@ -21,9 +21,9 @@ require.ensure([], function(require) {
 
     $('.dropzone').each(function(index){
         $(this).dropzone({
-            url: '/file/post',
+            url: '/upload',
             paramName: 'postedFile',
-            maxFilesize: 0.1,
+            maxFilesize: 5,
             //addRemoveLinks: true,
             dictDefaultMessage: '拖拽文件或者点击此处上传',
             accept: function(file, done) {

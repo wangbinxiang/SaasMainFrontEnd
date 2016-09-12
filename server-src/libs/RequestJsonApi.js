@@ -15,6 +15,9 @@ class RequestJsonApi {
 
     promiseThunk(resolve, reject) {
         return (err, header, body) => {
+            console.log(header.statusCode);
+            console.log(header.body);
+            console.log(body);
             if (err) {
                 reject(err);
             } else {
@@ -55,6 +58,24 @@ class RequestJsonApi {
         const that = this;
         return this.promise((resolve, reject) => {
             that.client.del(that.url, that.data, that.promiseThunk(resolve, reject));
+        });
+    }
+
+    sendFile() {
+        const that = this;
+        return this.promise((resolve, reject) => {
+            that.client.sendFile(that.url, that.data.path, that.data.name, (err, header, body) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    body = JSON.parse(body);
+                    console.log('body');
+                    resolve({
+                        header,
+                        body
+                    });
+                }
+            });
         });
     }
 }

@@ -1,7 +1,7 @@
 import RequestJsonApi from './RequestJsonApi';
-import { GET, POST, PUT, DEL } from '../config/httpMethodConf';
+import { GET, POST, PUT, DEL, SEND_FILE } from '../config/httpMethodConf';
 
-export default class RequestApi {
+export default class BaseRequest {
     constructor(host, feature, originData) {
         this.host       = host;
         this.feature    = feature;
@@ -23,6 +23,9 @@ export default class RequestApi {
     }
 
     buildRequest() {
+        console.log(this.host);
+        console.log(this.url);
+        console.log(this.data);
         this.request = new RequestJsonApi(this.host, this.url, this.data);
     }
 
@@ -43,6 +46,9 @@ export default class RequestApi {
                 break;
             case DEL:
                 return this.request.del();
+                break;
+            case SEND_FILE:
+                return this.request.sendFile();
                 break;
             default:
                 throw new Error('Invalid http method');
