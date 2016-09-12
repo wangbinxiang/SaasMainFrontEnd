@@ -1,13 +1,13 @@
 import BaseRequest from '../../libs/BaseRequest';
 import { GET, POST, PUT } from '../../config/httpMethodConf';
 import { USER_LOGIN, USER_SIGNUP, USER_UPDATE_PASSWORD, USER_REST_PASSWORD } from '../../config/apiFeatureConf';
-import SaasApiServiceLocation from '../apiServiceLocation/SaasApiServiceLocation';
+import { saasApiServiceLocation } from '../../libs/ApiServiceLocation';
 /**
  * users接口 jsonapi 数据类
  */
 export default class UsersRequestJsonApi extends BaseRequest {
     constructor(feature, originData) {
-        const host = SaasApiServiceLocation.get();
+        const host = saasApiServiceLocation();
         super(host, feature, originData);
         this.dataType = 'users';
     }

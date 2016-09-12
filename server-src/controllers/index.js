@@ -3,7 +3,6 @@
 // import User from '../models/model/User';
 
 import RequestJsonApi from '../libs/RequestJsonApi';
-import SaasApiServiceLocation from '../models/apiServiceLocation/SaasApiServiceLocation';
 
 export default async (ctx, next) => {
   const title = '首页';

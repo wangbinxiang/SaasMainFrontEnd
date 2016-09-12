@@ -1,12 +1,12 @@
 import BaseRequest from '../../libs/BaseRequest';
-import AttachmentApiServiceLocation from '../apiServiceLocation/AttachmentApiServiceLocation';
+import { attachmentApiServiceLocation } from '../../libs/ApiServiceLocation';
 import { GET, SEND_FILE } from '../../config/httpMethodConf';
 import { ATTACHMENT_UPLOAD, ATTACHMENT_GET, ATTACHMENT_GET_IMAGE } from '../../config/apiFeatureConf';
 
 
 export default class AttachmentRequestJsonApi extends BaseRequest {
     constructor(feature, originData) {
-        const host = AttachmentApiServiceLocation.get();
+        const host = attachmentApiServiceLocation();
         super(host, feature, originData);
     }
 

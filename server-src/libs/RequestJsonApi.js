@@ -15,9 +15,6 @@ class RequestJsonApi {
 
     promiseThunk(resolve, reject) {
         return (err, header, body) => {
-            console.log(header.statusCode);
-            console.log(header.body);
-            console.log(body);
             if (err) {
                 reject(err);
             } else {
@@ -68,8 +65,8 @@ class RequestJsonApi {
                 if (err) {
                     reject(err);
                 } else {
-                    body = JSON.parse(body);
-                    console.log('body');
+                    console.log(body);
+                    body = JSON.parse(JSON.parse(body));
                     resolve({
                         header,
                         body

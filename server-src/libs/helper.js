@@ -11,34 +11,38 @@ export function randomInt(low = 100000, high = 999999) {
 }
 
 
+/**
+ * 生成随机字符串
+ * @param  {Number} len 要生成的长度
+ * @return {String} pwd 生成的随机字符串
+ */
+export function randomString (len) {
+  len = len || 5
+  const chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678'
+  const maxPos = chars.length
+  let pwd = ''
+  for (let i = 0; i < len; i++) {
+    pwd += chars.charAt(Math.floor(Math.random() * maxPos))
+  }
+  return pwd
+}
 
+/**
+ * 上传文件设置
+ * @type {Object}
+ */
+import path from 'path'
+import multer from 'koa-multer'
+import mkdirp from 'mkdirp-then'
+import fsp from 'fs-promise'
 
-// /**
-//  * 上传文件设置
-//  * @type {Object}
-//  */
-// import path from 'path'
-// import multer from 'koa-multer'
-// import mkdirp from 'mkdirp-then'
-// import fsp from 'fs-promise'
-
-// const storage = multer.diskStorage({
-//   async destination (req, file, cb) {
-//     const now = new Date()
-//     const year = now.getFullYear()
-//     const month = now.getMonth() + 1
-//     const day = now.getDate()
-//     const dir = path.resolve('upload', `${year}-${month}-${day}`, file.fieldname)
-//     const exists = await fsp.exists(dir)
-//     if (!exists) {
-//       await mkdirp(dir)
-//     }
-//     cb(null, dir)
-//   },
-//   filename (req, file, cb) {
-//     const { name, ext } = path.parse(file.originalname)
-//     cb(null, `${name}-${randomString(2)}-${ext}`)
-//   }
-// })
-
-// export const upload = multer({ storage: storage })
+export const storage = multer.diskStorage({
+  destination (req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename (req, file, cb) {
+    console.log(file);
+    const { name, ext } = path.parse(file.originalname)
+    cb(null, `${name}-${randomString(2)}-${ext}`)
+  }
+})

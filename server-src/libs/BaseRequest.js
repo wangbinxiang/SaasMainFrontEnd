@@ -23,9 +23,6 @@ export default class BaseRequest {
     }
 
     buildRequest() {
-        console.log(this.host);
-        console.log(this.url);
-        console.log(this.data);
         this.request = new RequestJsonApi(this.host, this.url, this.data);
     }
 

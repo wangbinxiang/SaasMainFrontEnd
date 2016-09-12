@@ -3,13 +3,11 @@
  */
 export default class JsonApiBodyReader {
     constructor(body) {
-        console.log(typeof body);
-        // this.data = body.data.attributes;
-        // this.data.id =  body.data.id;
+        this.data = body.data.attributes;
+        this.data.id =  body.data.id;
     }
 
     value(key) {
-        return '';
         return this.data[key];
     }
 }

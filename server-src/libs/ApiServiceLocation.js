@@ -1,33 +1,33 @@
-import __instance from './singleton';
 import config from 'config';
-/**
- * api地址类
- */
-class ApiServiceLocation {
-    constructor(apiServiceLocation) {
-        if (__instance()) {
-            return __instance();
-        };
-        this.apiServiceLocation = apiServiceLocation? apiServiceLocation: 'apiServiceLocation.';
-        __instance(this);
-    }
 
-    get() {
-        const configLocation = this.apiServiceLocation + this.microServiceName;
-        if (config.has(configLocation)) {
-            return config.get(configLocation)
-        } else {
-            throw new Error('config not exsits, config location is ' + configLocation);
-        }
-        config.get(saasApiServiceLocation);
-        return this.apiServiceLocation;
-    }
+function prefixApiServiceLocation() {
+    return 'apiServiceLocation.';
 }
-export default ApiServiceLocation;
 
+function getServiceLcation(serviceName) {
+    let serviceLocation = prefixApiServiceLocation() + serviceName;
+    return config.get(serviceLocation);
+}
 
-// const apiServiceLocation = 'apiServiceLocation';
-// const saasApiServiceLocation = apiServiceLocation + '.saas';
-// export function getSaasApiServiceLocation () {
-//     return config.get(saasApiServiceLocation);
-// }
+/**
+ * saas微服务地址
+ * @author wangbinxiang
+ * @date   2016-09-12T20:35:12+0800
+ * @return {[type]}                 [description]
+ */
+export function saasApiServiceLocation() {
+    const saas = 'saas';
+    return getServiceLcation(saas);
+}
+
+/**
+ * attachment微服务地址
+ * @author wangbinxiang
+ * @date   2016-09-12T20:35:22+0800
+ * @return {[type]}                 [description]
+ */
+export function attachmentApiServiceLocation() {
+    const attachmentLocation = 'attachment';
+    return getServiceLcation(attachmentLocation);
+}
+

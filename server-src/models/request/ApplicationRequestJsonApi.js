@@ -1,11 +1,11 @@
 import BaseRequest from '../../libs/BaseRequest';
 import { GET, POST, PUT, DEL } from '../../config/httpMethodConf';
-import SaasApiServiceLocation from '../apiServiceLocation/SaasApiServiceLocation';
+import { saasApiServiceLocation } from '../../libs/ApiServiceLocation';
 import { INFORMATION_APPLY } from '../../config/apiFeatureConf';
 
 export default class ApplicationRequestJsonApi extends BaseRequest {
     constructor(feature, originData) {
-        const host = SaasApiServiceLocation.get();
+        const host = saasApiServiceLocation();
         super(host, feature, originData);
         this.dataType = 'applications';
     }
