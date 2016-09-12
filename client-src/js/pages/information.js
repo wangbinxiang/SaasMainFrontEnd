@@ -4,9 +4,10 @@
 
 import 'foundation-sites'
 
-
-
 $(document).foundation();
+Foundation.Abide.defaults.patterns['telephone'] = /^1[0-9]{10}$/;
+Foundation.Abide.defaults.patterns['mobilephone'] = /^1[3|4|5|7|8]\d{9}$/;
+Foundation.Abide.defaults.patterns['idcard'] = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/;
 
 $('#auditType').on('change', function(){
     $('.hideforone, .hideforagency').toggle();
