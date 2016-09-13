@@ -9,4 +9,13 @@ export default class AttachmentsService {
     upload(path) {
         return this.attachmentAdapter.upload(path, Attachment);
     }
+
+    get() {
+
+    }
+
+
+    getImage() {
+        
+    }
 }

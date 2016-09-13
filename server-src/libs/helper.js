@@ -33,8 +33,6 @@ export function randomString (len) {
  */
 import path from 'path'
 import multer from 'koa-multer'
-import mkdirp from 'mkdirp-then'
-import fsp from 'fs-promise'
 
 export const storage = multer.diskStorage({
   destination (req, file, cb) {
