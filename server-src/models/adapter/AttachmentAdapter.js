@@ -21,4 +21,22 @@ export default class AttachmentAdapter extends Adapter {
 
         return this.request();
     }
+
+
+    get(idList, aAttachmentClass) {
+        this.buildRequest(ATTACHMENT_GET, { idList });
+
+        this.activeClass = aAttachmentClass;
+
+        return this.request();
+    }
+
+
+    getImage(idList, width, height, aAttachmentClass) {
+        this.buildRequest(ATTACHMENT_GET_IMAGE, { idList, width, height });
+
+        this.activeClass = aAttachmentClass;
+
+        return this.request();
+    }
 }

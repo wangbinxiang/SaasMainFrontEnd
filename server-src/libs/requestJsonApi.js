@@ -33,7 +33,17 @@ class RequestJsonApi {
     get() {
         const that = this;
         return this.promise((resolve, reject) => {
-            that.client.get(that.url, that.promiseThunk(resolve, reject));
+            that.client.get(that.url, (err, header, body) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    body = JSON.parse(body);
+                    resolve({
+                        header,
+                        body
+                    });
+                }
+            });
         });
     }
 

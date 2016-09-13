@@ -6,15 +6,14 @@ export default class AttachmentTranslator extends Translator {
         super();
     }
 
-    //翻译users信息
-    toObject(body, aAttachmentClass) {
-
-        const bodyReader = new AttachmentJsonApiBodyReader(body);
+    readData(data) {
+        //读取数据
+        const bodyReader = new AttachmentJsonApiBodyReader(data);
 
         let id  = bodyReader.value('id');
         let url = bodyReader.value('url');
 
-
-        return this.newObject(aAttachmentClass, { id, url });
+        //返回参数
+        return { id, url };
     }
 }

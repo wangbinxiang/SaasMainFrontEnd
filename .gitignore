@@ -41,6 +41,8 @@ server
 # JETBRAIN
 .idea
 
+# 上传目录
+uploads/*
 
 client/js/pages/*
 

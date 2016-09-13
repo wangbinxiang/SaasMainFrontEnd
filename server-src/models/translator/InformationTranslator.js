@@ -6,10 +6,8 @@ export default class InformationTranslator extends Translator {
         super();
     }
 
-    //翻译application信息
-    toInformationFromJsonApiBody(body, aInformationClass) {
-
-        const bodyReader = new ApplicationJsonApiBodyReader(body);
+    readData(data) {
+        const bodyReader = new ApplicationJsonApiBodyReader(data);
 
         let id                 = bodyReader.value('id');
         let title              = bodyReader.value('title');
@@ -30,6 +28,7 @@ export default class InformationTranslator extends Translator {
         let status             = bodyReader.value('status');
 
 
-        return this.newObject(aInformationClass, { id, title, contactPeople, contactPeoplePhone, contactPeopleQQ, province, city, address, identifyCardFrontPhoto, identifyCardBackPhoto, bankCardHolderName, bankCardNumber, bankCardCellphone, additionalInformation });
+        return { id, title, contactPeople, contactPeoplePhone, contactPeopleQQ, province, city, address, identifyCardFrontPhoto, identifyCardBackPhoto, bankCardHolderName, bankCardNumber, bankCardCellphone, additionalInformation };
+
     }
 }

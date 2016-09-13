@@ -1,7 +1,7 @@
 export default class ApplicationJsonApiBodyReader {
     constructor(body) {
-        this.data = body.data.attributes;
-        this.data.id =  body.data.id;
+        this.data = body.attributes;
+        this.data.id =  body.id;
     }
 
     value(key) {

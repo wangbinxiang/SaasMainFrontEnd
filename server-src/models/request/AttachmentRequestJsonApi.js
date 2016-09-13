@@ -24,11 +24,36 @@ export default class AttachmentRequestJsonApi extends BaseRequest {
     }
 
     get() {
+        let url = '/files/';
+        let ids = this.originData.idList? this.originData.idList.join(): '';
+        console.log(ids);
+        if (ids) {
+            url = url + ids;
 
+            this.url = url;
+
+            this.method = GET;
+        } else {
+            throw new Error('empty idList');
+        }
     }
 
     getImage() {
+        let url = '/images/';
+        let width = Number.isInteger(this.originData.width)? this.originData.width: 0;
+        let height = Number.isInteger(this.originData.height)? this.originData.height: 0;
+        let ids = this.originData.idList? this.originData.idList.join(): '';
 
+        if (width > 0 && height > 0 && ids) {
+            '/images/200/300/1,2,3';
+            url = url + width + '/' + height + '/' + ids
+            console.log(url);
+            this.url = url;
+
+            this.method = GET;
+        } else {
+            throw new Error('error params');
+        }
     }
 
     buildFeature() {
