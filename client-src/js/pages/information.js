@@ -38,13 +38,14 @@ require.ensure([], function(require) {
         $(this).dropzone({
             url: '/upload',
             paramName: 'postedFile',
-            maxFilesize: 5,
+            maxFilesize: 4,
             addRemoveLinks: true,
-            acceptedFiles: '.jpg, .png, .gif',
+            acceptedFiles: '.jpg, .png, .gif, .jpeg, .bmp',
             maxFiles: 1,
             init:function() {
                 this.on('success', function(file, response){
                     //console.log(response, response.attachmentList[0].id);
+                    console.log($(element).next());
                     $(element).next().val(response.attachmentList[0].id);
                 })
                 this.on('removedfile', function(){

@@ -77,7 +77,7 @@
 				<div class="medium-6 columns">
 					<label>身份证正面图片</label>
 					<div class="dropzone dropzone-single"></div>
-                    <input type="text" required class="dz-src">
+                    <input type="text" name="idCardFront" id="idCardFront" required class="dz-src">
                     <span class="form-error">
 						请上传身份证正面图片
 					</span>
@@ -85,7 +85,7 @@
 				<div class="medium-6 columns">
 					<label>身份证背面图片</label>
 					<div class="dropzone dropzone-single"></div>
-                    <input type="text" required class="dz-src">
+                    <input type="text" name="idCardBack" id="idCardBack" required class="dz-src">
                     <span class="form-error">
 						请上传身份证背面图片
 					</span>
@@ -95,7 +95,7 @@
 				<div class="medium-6 columns">
 					<label>导游证图片</label>
 					<div class="dropzone dropzone-single"></div>
-                    <input type="text" required class="dz-src">
+                    <input type="text" name="touristGuideCard" id="touristGuideCard" required class="dz-src">
                     <span class="form-error">
 						请上传导游证图片
 					</span>
@@ -105,7 +105,7 @@
 				<div class="medium-6 columns">
 					<label>
 						联系人
-						<input type="text" required>
+						<input type="text" name="contactName" id="contactName" required>
                         <span class="form-error">
 							请输入联系人姓名
 						</span>
@@ -114,7 +114,7 @@
 				<div class="medium-6 columns">
 					<label>
 						联系人电话
-						<input type="text" required pattern="^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$">
+						<input type="text" name="contactPhone" id="contactPhone" required pattern="^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$">
                         <span class="form-error">
 							请输入联系人电话
 						</span>
@@ -125,7 +125,7 @@
 				<div class="medium-6 columns">
 					<label>
 						联系人QQ
-						<input type="text" required pattern="number">
+						<input type="text" name="contactQQ" id="contactQQ" required pattern="number">
                         <span class="form-error">
 							请输入联系人QQ号码
 						</span>
@@ -147,7 +147,7 @@
 				<div class="small-12 columns">
 					<label>
 						商社名称
-						<input type="text" placeholder="" required>
+						<input type="text" name="title" id="title" placeholder="" required>
 						<span class="form-error">
 							请输入商社名称
 						</span>
@@ -170,7 +170,7 @@
 				<div class="medium-6 columns">
 					<label>授权书图片</label>
 					<div class="dropzone dropzone-single"></div>
-                    <input type="text" required class="dz-src">
+                    <input type="text" name="authorizePic" id="authorizePic" required class="dz-src">
                     <span class="form-error">
 						请上传授权书图片
 					</span>
@@ -178,7 +178,7 @@
 				<div class="medium-6 columns">
 					<label>备案登记证明图片</label>
 					<div class="dropzone dropzone-single"></div>
-                    <input type="text" required class="dz-src">
+                    <input type="text" name="registrationPic" id="registrationPic" required class="dz-src">
                     <span class="form-error">
 						请上传备案登记证明图片
 					</span>
@@ -188,7 +188,7 @@
 				<div class="medium-6 columns">
 					<label>营业执照图片</label>
 					<div class="dropzone dropzone-single"></div>
-                    <input type="text" required class="dz-src">
+                    <input type="text" name="businessLicense" id="businessLicense" required class="dz-src">
                     <span class="form-error">
 						请上传营业执照图片
 					</span>
@@ -198,7 +198,7 @@
 				<div class="medium-6 columns">
 					<label>
 						银行卡持卡人姓名
-						<input type="text" required>
+						<input type="text" name="bankCardHolderName" id="bankCardHolderName" required>
                         <span class="form-error">
 						    请输入银行卡持卡人姓名
 					    </span>
@@ -207,7 +207,7 @@
 				<div class="medium-6 columns">
 					<label>
 						银行卡卡号
-						<input type="text" required>
+						<input name="bankCardNumber" id="bankCardNumber" type="text" required>
                         <span class="form-error">
 						    请输入银行卡号码
 					    </span>
@@ -218,7 +218,7 @@
 				<div class="medium-6 columns">
 					<label>
 						银行预留手机
-						<input type="text" required pattern="telephone">
+						<input type="text" name="bankCardCellphone" id="bankCardCellphone" required pattern="telephone">
                         <span class="form-error">
 						    请输入银行预留手机
 					    </span>
