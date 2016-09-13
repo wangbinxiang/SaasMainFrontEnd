@@ -5,12 +5,3 @@
 .saasIndex {
     background: url(/img/saas_hero.png) center top fixed no-repeat; background-size: cover;
 }
-.dropzone-single {
-    background-color:#f2f2f2; min-height:100px; margin-bottom:1rem;
-}
-.dropzone-single .dz-message {
-    margin:0; line-height:100px;
-}
-.dz-src {
-    display:none;
-}
