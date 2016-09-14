@@ -149,6 +149,14 @@ app.on('error', async (err, ctx) => {
   console.log('error occured:', err)
 })
 
+process.on('uncaughtException', function (err) {
+  console.error('Unexpected exception: ' + err);
+  console.error('Unexpected exception stack: ' + err.stack);
+  // Do something here: 
+  // Such as send a email to admin
+  process.exit(1);
+})
+
 const port = parseInt(config.get('port') || '3000')
 const server = http.createServer(app.callback())
 
