@@ -49,6 +49,19 @@ require.ensure([], function(require) {
             acceptedFiles: '.jpg, .png, .gif, .jpeg, .bmp',
             maxFiles: 1,
             init:function() {
+                var mockFile = { name: "banner2.jpg", size: 12345 };
+                this.files.push(mockFile);
+                //this.options.addedfile.call(this, mockFile); 
+                //this.options.thumbnail.call(this, mockFile, "http://www.shiver.cn/media/20100124YuliaBrodskayaPaperGraphic.jpg");
+                //mockFile.previewElement.classList.add('dz-success')
+                //mockFile.previewElement.classList.add('dz-complete')
+
+                this.emit("addedfile", mockFile);
+                this.emit("thumbnail", mockFile, "http://www.shiver.cn/media/20100124YuliaBrodskayaPaperGraphic.jpg");
+                this.emit("complete", mockFile);
+                var existingFileCount = 1; // The number of files already uploaded
+                this.options.maxFiles = this.options.maxFiles - existingFileCount;
+                
                 this.on('success', function(file, response){
                     //console.log(response, response.attachmentList[0].id);
                     console.log($(element).next());
