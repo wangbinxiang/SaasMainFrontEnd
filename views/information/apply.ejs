@@ -65,8 +65,10 @@
 			<legend><h4>选择卖家类型</h4></legend>
 			<div class="row">
 				<fieldset class="columns" id="auditType">
-					<input type="radio" name="pokemon" checked value="Reds" id="pokemonRed"><label for="pokemonRed">商社</label>
-					<input type="radio" name="pokemon" value="Blue" id="pokemonBlueOne"><label for="pokemonBlueOne">个体</label>
+					<input type="radio" name="pokemon" checked value="Reds" id="pokemonRed"><label for="pokemonRed">组团社</label>
+					<input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">批发商</label>
+                    <input type="radio" name="pokemon" value="BlueOne" id="pokemonBlueOne"><label for="pokemonBlueOne">地接社</label>
+                    <input type="radio" name="pokemon" value="personal" id="pokemonBlueTwo"><label for="pokemonBlueTwo">个体</label>
 				</fieldset>
 			</div>
 		</fieldset>
@@ -90,17 +92,7 @@
 						请上传身份证背面图片
 					</span>
 				</div>
-			</div>
-			<div id="one-show" class="row hideforagency">
-				<div class="medium-6 columns">
-					<label>导游证图片</label>
-					<div class="dropzone dropzone-single"></div>
-                    <input type="text" name="touristGuideCard" id="touristGuideCard" required class="dz-src">
-                    <span class="form-error">
-						请上传导游证图片
-					</span>
-				</div>
-			</div>
+			</div>			
 			<div class="row">
 				<div class="medium-6 columns">
 					<label>
@@ -139,11 +131,22 @@
 					</label>
 				</div>
 			</div>
+            <div class="row">
+				<div class="medium-12 columns">
+					<label>
+						详细地址
+						<input type="text" name="contactQQ" id="address" required>
+                        <span class="form-error">
+							请输入联系人详细地址
+						</span>
+					</label>
+				</div>
+			</div>
 		</fieldset>
 
-		<fieldset class="fieldset hideforone" id="agency-show">
+		<fieldset class="fieldset" id="agency-show">
 			<legend><h4>行业认证信息</h4></legend>
-			<div class="row">
+            <div class="row">
 				<div class="small-12 columns">
 					<label>
 						商社名称
@@ -154,19 +157,17 @@
 					</label>
 				</div>
 			</div>
-			<div class="row">
-				<fieldset class="columns">
-					<legend>商社类型</legend>
-					<input type="radio" name="typeHost" value="Reds" id="typeHost0"><label for="typeHost0">组团社</label>
-					<input type="radio" name="typeHost" value="Blue" id="typeHost1" required><label for="typeHost1">批发商</label>
-					<input type="radio" name="typeHost" value="Blue" id="typeHost2"><label for="typeHost2">地接社</label>
+            <div id="one-show" class="row hideforagency">
+				<div class="medium-6 columns">
+					<label>导游证图片</label>
+					<div class="dropzone dropzone-single"></div>
+                    <input type="text" name="touristGuideCard" id="touristGuideCard" class="dz-src">
                     <span class="form-error">
-						请选择商社类型
+						请上传导游证图片
 					</span>
-				</fieldset>
-                
+				</div>
 			</div>
-			<div class="row">
+			<div class="row hideforone">
 				<div class="medium-6 columns">
 					<label>授权书图片</label>
 					<div class="dropzone dropzone-single"></div>
@@ -184,7 +185,7 @@
 					</span>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row hideforone">
 				<div class="medium-6 columns">
 					<label>营业执照图片</label>
 					<div class="dropzone dropzone-single"></div>

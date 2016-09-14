@@ -10,12 +10,18 @@ Foundation.Abide.defaults.patterns['mobilephone'] = /^1[3|4|5|7|8]\d{9}$/;
 Foundation.Abide.defaults.patterns['idcard'] = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$/;
 
 $('#auditType').on('change', function(){
-    $('.hideforone, .hideforagency').toggle();
-    if($('#one-show').hasClass('hideforagency')){
-        $('#agency-show input').removeAttr('required');
+    if($("input[name='pokemon']:checked").val() === "personal"){
+        $('.hideforone').hide();
+        $('.hideforone input').removeAttr('required')
+        $('.hideforagency').show();
+        $('.hideforagency input').attr('required', 'required')
     } else{
-        $('#agency-show input').attr('required');
+        $('.hideforone').show()
+        $('.hideforone input').attr('required', 'required');
+        $('.hideforagency').hide()
+        $('.hideforagency input').removeAttr('required');
     }
+    console.log($('.hideforagency input').length)
 })
 
 require.ensure([], function(require) {
