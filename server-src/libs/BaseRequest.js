@@ -17,6 +17,8 @@ export default class BaseRequest {
                 attributes: attributes
             }
         };
+        console.log(this.data);
+        console.log(this.data.data.attributes.additionalInformation);
     }
 
     buildFeature() {

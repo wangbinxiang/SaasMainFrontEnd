@@ -1,16 +1,24 @@
 import Adapter from '../../libs/Adapter';
 import UserTranslator from '../translator/UserTranslator';
-import UsersRequestJsonApi from '../request/UsersRequestJsonApi';
-import { USER_LOGIN, USER_SIGNUP, USER_UPDATE_PASSWORD, USER_REST_PASSWORD } from '../../config/apiFeatureConf';
+import AuthenticateRequestJsonApi from '../request/AuthenticateRequestJsonApi';
+import { USER_GET, USER_LOGIN, USER_SIGNUP, USER_UPDATE_PASSWORD, USER_REST_PASSWORD } from '../../config/apiFeatureConf';
 
-export default class UserAdapter extends Adapter {
+export default class AuthenticateAdapter extends Adapter {
     constructor() {
         super();
         this.translator = new UserTranslator();
     }
 
     buildRequest(apiFeature, data) {
-        this.requestObject = new UsersRequestJsonApi(apiFeature, data);
+        this.requestObject = new AuthenticateRequestJsonApi(apiFeature, data);
+    }
+
+    get(idList, aUserClass) {
+        this.buildRequest(USER_GET, { idList });
+
+        this.activeClass = aUserClass;
+
+        return this.request();
     }
 
     signup(passport, password, aUserClass) {
@@ -38,9 +46,9 @@ export default class UserAdapter extends Adapter {
 
 
 
-    updatePassword(uid, oldPassword, password, aUserClass) {
+    updatePassword(id, oldPassword, password, aUserClass) {
         this.buildRequest(USER_UPDATE_PASSWORD, { 
-            uid: uid,
+            id: id,
             oldPassword: oldPassword,
             password: password
         });

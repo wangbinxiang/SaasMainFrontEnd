@@ -8,6 +8,9 @@ export async function showRegister(ctx, next) {
     // ctx.cookies.set('test', 'signUp');
     // ctx.cookies.set('test2', 'signUp2');
 
+    // const authenticateService = new AuthenticateService();
+    // let user = await authenticateService.get([1,2,3,4]);
+    // console.log(user);
 
     await ctx.render('authhenticate/register', {
         title, pageJs
@@ -113,8 +116,24 @@ export async function showUpdatePassword(ctx, next) {
 
 
 export async function updatePassword(ctx, next) {
-
+    console.log(ctx.session.passport);
     
+    console.log(ctx.request.body);
 
-    ctx.redirect('/');   
+    const authenticateService = new AuthenticateService();
+    let user = await authenticateService.updatePassword(ctx.session.passport.user.id, ctx.request.body.oldPassword, ctx.request.body.password);
+
+    if (!user) {
+        ctx.redirect('/user/change-password')
+    };
+
+    //退出登录
+    // ctx.logout();
+    console.log(123);
+    let title    = '修改密码成功';
+    let info     = '修改密码成功，请登录。';
+    let location = '/login';
+    await ctx.render('common/info', {
+        title, info, location
+    });
 }

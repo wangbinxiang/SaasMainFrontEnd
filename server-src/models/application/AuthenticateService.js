@@ -1,10 +1,14 @@
-import UserAdapter from '../adapter/UserAdapter';
+import UserAdapter from '../adapter/AuthenticateAdapter';
 import User from '../model/User';
 
 //用户认证服务类
 export default class AuthenticateService {
     constructor() {
         this.userAdapter = new UserAdapter();
+    }
+
+    get(idList) {
+        return this.userAdapter.get(idList, User);
     }
 
     //用户注册功能
@@ -18,8 +22,8 @@ export default class AuthenticateService {
         return this.userAdapter.verification(passport, password, User);
     }
 
-    updatePassword(uid, oldPassword, password) {
-        return this.userAdapter.updatePassword(uid, oldPassword, password, User);
+    updatePassword(id, oldPassword, password) {
+        return this.userAdapter.updatePassword(id, oldPassword, password, User);
     }
 
     //获取用户

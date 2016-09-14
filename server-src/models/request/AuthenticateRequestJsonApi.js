@@ -1,22 +1,31 @@
 import BaseRequest from '../../libs/BaseRequest';
 import { GET, POST, PUT } from '../../config/httpMethodConf';
-import { USER_LOGIN, USER_SIGNUP, USER_UPDATE_PASSWORD, USER_REST_PASSWORD } from '../../config/apiFeatureConf';
+import { USER_GET, USER_LOGIN, USER_SIGNUP, USER_UPDATE_PASSWORD, USER_REST_PASSWORD } from '../../config/apiFeatureConf';
 import { saasApiServiceLocation } from '../../libs/ApiServiceLocation';
 /**
  * users接口 jsonapi 数据类
  */
-export default class UsersRequestJsonApi extends BaseRequest {
+export default class AuthenticateRequestJsonApi extends BaseRequest {
     constructor(feature, originData) {
         const host = saasApiServiceLocation();
         super(host, feature, originData);
         this.dataType = 'users';
     }
 
-    get(ids = '') {
-        let url = '/users';
-        url = url + (ids? '/' + ids: '');
-        //有ids 是获取指定id的用户信息，没有ids则获取用户信息列表
-        this.url = url;
+    get() {
+        let url = '/users/';
+
+        let ids = this.originData.idList? this.originData.idList.join(): '';
+
+        if (ids) {
+            url = url + ids;
+
+            this.url = url;
+
+            this.method = GET;
+        } else {
+            throw new Error('empty idList');
+        }
     }
 
     signup() {
@@ -52,7 +61,10 @@ export default class UsersRequestJsonApi extends BaseRequest {
     }
 
     updatePassword() {
-        let url = '/user/' + this.originData.uid + '/updatePassword';
+        console.log(this.originData);
+        let url = '/users/' + this.originData.id + '/updatePassword';
+        console.log(url);
+        this.url = url;
 
         this.method = PUT;
 
@@ -70,6 +82,9 @@ export default class UsersRequestJsonApi extends BaseRequest {
 
     buildFeature() {
         switch(this.feature) {
+            case USER_GET:
+                this.get();
+                break;
             case USER_LOGIN:
                 this.login();
                 break;

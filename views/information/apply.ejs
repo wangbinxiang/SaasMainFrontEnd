@@ -65,10 +65,10 @@
 			<legend><h4>选择卖家类型</h4></legend>
 			<div class="row">
 				<fieldset class="columns" id="auditType">
-					<input type="radio" name="pokemon" checked value="Reds" id="pokemonRed"><label for="pokemonRed">组团社</label>
-					<input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">批发商</label>
-                    <input type="radio" name="pokemon" value="BlueOne" id="pokemonBlueOne"><label for="pokemonBlueOne">地接社</label>
-                    <input type="radio" name="pokemon" value="personal" id="pokemonBlueTwo"><label for="pokemonBlueTwo">个体</label>
+					<input type="radio" name="category" value="1" checked value="Reds" id="pokemonRed"><label for="pokemonRed">组团社</label>
+					<input type="radio" name="category" value="2" id="pokemonBlue"><label for="pokemonBlue">批发商</label>
+                    <input type="radio" name="category" value="3" id="pokemonBlueOne"><label for="pokemonBlueOne">地接社</label>
+                    <input type="radio" name="category" value="4" id="pokemonBlueTwo"><label for="pokemonBlueTwo">个体</label>
 				</fieldset>
 			</div>
 		</fieldset>
@@ -79,7 +79,7 @@
 				<div class="medium-6 columns">
 					<label>身份证正面图片</label>
 					<div class="dropzone dropzone-single"></div>
-                    <input type="text" name="idCardFront" id="idCardFront" required class="dz-src">
+                    <input type="text" name="identifyCardFrontPhoto" id="identifyCardFrontPhoto" required class="dz-src">
                     <span class="form-error">
 						请上传身份证正面图片
 					</span>
@@ -87,7 +87,7 @@
 				<div class="medium-6 columns">
 					<label>身份证背面图片</label>
 					<div class="dropzone dropzone-single"></div>
-                    <input type="text" name="idCardBack" id="idCardBack" required class="dz-src">
+                    <input type="text" name="identifyCardBackPhoto" id="identifyCardBackPhoto" required class="dz-src">
                     <span class="form-error">
 						请上传身份证背面图片
 					</span>
@@ -97,7 +97,7 @@
 				<div class="medium-6 columns">
 					<label>
 						联系人
-						<input type="text" name="contactName" id="contactName" required>
+						<input type="text" name="contactPeople" id="concontactPeopletactName" required>
                         <span class="form-error">
 							请输入联系人姓名
 						</span>
@@ -106,7 +106,7 @@
 				<div class="medium-6 columns">
 					<label>
 						联系人电话
-						<input type="text" name="contactPhone" id="contactPhone" required pattern="^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$">
+						<input type="text" name="contactPeoplePhone" id="contactPeoplePhone" required pattern="^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$">
                         <span class="form-error">
 							请输入联系人电话
 						</span>
@@ -117,7 +117,7 @@
 				<div class="medium-6 columns">
 					<label>
 						联系人QQ
-						<input type="text" name="contactQQ" id="contactQQ" required pattern="number">
+						<input type="text" name="contactPeopleQQ" id="contactPeopleQQ" required pattern="number">
                         <span class="form-error">
 							请输入联系人QQ号码
 						</span>
@@ -126,8 +126,8 @@
 				<div class="medium-6 columns">
 					<label class="autoSelect">
 						<span>所在地区</span>
-						<select id="province" required><option value="">请选择省</option></select>
-						<select id="city" required><option value="">请选择市</option></select>
+						<select id="province" name="province" required><option value="">请选择省</option></select>
+						<select id="city" name="city" required><option value="">请选择市</option></select>
 					</label>
 				</div>
 			</div>
@@ -135,7 +135,7 @@
 				<div class="medium-12 columns">
 					<label>
 						详细地址
-						<input type="text" name="contactQQ" id="address" required>
+						<input type="text" name="address" id="address" required>
                         <span class="form-error">
 							请输入联系人详细地址
 						</span>
@@ -161,7 +161,7 @@
 				<div class="medium-6 columns">
 					<label>导游证图片</label>
 					<div class="dropzone dropzone-single"></div>
-                    <input type="text" name="touristGuideCard" id="touristGuideCard" class="dz-src">
+                    <input type="text" name="touristGuideCardPhoto" id="touristGuideCardPhoto" class="dz-src">
                     <span class="form-error">
 						请上传导游证图片
 					</span>
@@ -171,7 +171,7 @@
 				<div class="medium-6 columns">
 					<label>授权书图片</label>
 					<div class="dropzone dropzone-single"></div>
-                    <input type="text" name="authorizePic" id="authorizePic" required class="dz-src">
+                    <input type="text" name="authorizePhoto" id="authorizePhoto" required class="dz-src">
                     <span class="form-error">
 						请上传授权书图片
 					</span>
@@ -179,7 +179,7 @@
 				<div class="medium-6 columns">
 					<label>备案登记证明图片</label>
 					<div class="dropzone dropzone-single"></div>
-                    <input type="text" name="registrationPic" id="registrationPic" required class="dz-src">
+                    <input type="text" name="registrationPhoto" id="registrationPhoto" required class="dz-src">
                     <span class="form-error">
 						请上传备案登记证明图片
 					</span>
@@ -189,7 +189,7 @@
 				<div class="medium-6 columns">
 					<label>营业执照图片</label>
 					<div class="dropzone dropzone-single"></div>
-                    <input type="text" name="businessLicense" id="businessLicense" required class="dz-src">
+                    <input type="text" name="businessLicensePhoto" id="businessLicensePhoto" required class="dz-src">
                     <span class="form-error">
 						请上传营业执照图片
 					</span>

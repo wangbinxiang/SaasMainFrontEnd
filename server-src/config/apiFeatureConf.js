@@ -5,6 +5,11 @@ export const USER_UPDATE_PASSWORD  = Symbol();
 export const USER_REST_PASSWORD    = Symbol();
 
 export const INFORMATION_APPLY     = Symbol();
+export const INFORMATION_GET       = Symbol();
+export const INFORMATION_EDIT      = Symbol();
+export const INFORMATION_DECLINE   = Symbol();
+export const INFORMATION_APPROVE   = Symbol();
+
 
 
 //附件功能

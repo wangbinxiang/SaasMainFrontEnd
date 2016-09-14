@@ -9,9 +9,7 @@ export default class Translator {
     //翻译users信息
     toObject(body, aActiveClass) {
         this.activeClass = aActiveClass;
-        console.log(body);
-        console.log(typeof body.data.length);
-        if (body.data.length) {
+        if (typeof body.data.length !== 'undefined') {
             let result = [];
             for(let data of body.data) {
                 let obj = this.createObject(data);

@@ -26,7 +26,7 @@ export default class AttachmentRequestJsonApi extends BaseRequest {
     get() {
         let url = '/files/';
         let ids = this.originData.idList? this.originData.idList.join(): '';
-        console.log(ids);
+
         if (ids) {
             url = url + ids;
 
@@ -45,9 +45,7 @@ export default class AttachmentRequestJsonApi extends BaseRequest {
         let ids = this.originData.idList? this.originData.idList.join(): '';
 
         if (width > 0 && height > 0 && ids) {
-            '/images/200/300/1,2,3';
             url = url + width + '/' + height + '/' + ids
-            console.log(url);
             this.url = url;
 
             this.method = GET;

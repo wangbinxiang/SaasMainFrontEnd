@@ -8,7 +8,7 @@ export default async (ctx, next) => {
   const title = '首页';
   const bodyclass = 'saasIndex'
 
-  
+  console.log(ctx.session.passport);
   // const authService = new AuthService();
 
   // const user = await authService.login(123, 123, User);

@@ -34,6 +34,8 @@ class RequestJsonApi {
         const that = this;
         return this.promise((resolve, reject) => {
             that.client.get(that.url, (err, header, body) => {
+                console.log(123);
+                console.log(typeof body);
                 if (err) {
                     reject(err);
                 } else {
@@ -50,6 +52,7 @@ class RequestJsonApi {
     post() {
         const that = this;
         return this.promise((resolve, reject) => {
+            console.log(this.data);
             that.client.post(that.url, that.data, that.promiseThunk(resolve, reject));
         });
     }

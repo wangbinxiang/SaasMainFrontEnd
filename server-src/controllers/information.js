@@ -5,6 +5,7 @@ import AttachmentService from '../models/application/AttachmentService';
 import fs from 'fs';
 import _ from 'lodash';
 import { attachmentPicTypeList } from '../config/attachmentConf';
+import InformationService from '../models/application/InformationService';
 /**
  * 审核资料填写
  * @author wangbinxiang
@@ -14,6 +15,9 @@ import { attachmentPicTypeList } from '../config/attachmentConf';
 export async function showApplyForm(ctx, next) {
     const title = '资料审核';
     const pageJs = webpackIsomorphicTools.assets().javascript.information;
+
+    // const informationService = new AttachmentService();
+    // const information = await informationService.get([100]);
 
     // const client = request.createClient('http://120.25.161.1:8010');
     // client.get('/images/200/300/100', (err, header, body) => {
@@ -35,7 +39,40 @@ export async function showApplyForm(ctx, next) {
 }
 
 export async function apply(ctx, next) {
+    //个人信息
+    let idCardFront        = ctx.request.body.idCardFront;
+    let idCardBack         = ctx.request.body.idCardBack;
+    let contactName        = ctx.request.body.contactName;
+    let contactPhone       = ctx.request.body.contactPhone;
+    let contactQQ          = ctx.request.body.contactQQ;
+    let province           = ctx.request.body.province;
+    let city               = ctx.request.body.city;
+    let address            = ctx.request.body.address;
+    let category           = ctx.request.body.category;
     
+    //商社名称
+    let title              = ctx.request.body.title;
+    
+    let bankCardHolderName = ctx.request.body.bankCardHolderName;
+    let bankCardNumber     = ctx.request.body.bankCardNumber;
+    let bankCardCellphone  = ctx.request.body.bankCardCellphone;
+    
+    //组团社，批发商，地接社信息
+    let authorizePic       = ctx.request.body.authorizePic;
+    let registrationPic    = ctx.request.body.registrationPic;
+    let businessLicensePic = ctx.request.body.businessLicensePic;
+    
+    
+    //个人导游
+    let touristGuideCard   = ctx.request.body.touristGuideCard;
+
+
+    const informationService = new InformationService();
+    const information = await informationService.apply(1, ctx.request.body);
+
+    console.log(information);
+
+    ctx.body = { success: true };
 }
 
 export async function upload(ctx, next) {

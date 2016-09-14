@@ -31,9 +31,9 @@ router.post('/login',
 //退出登录
 router.get('/logout', logout);
 
-router.get('/user/change-password', showUpdatePassword);
+router.get('/user/change-password', requiresLogin, showUpdatePassword);
 
-router.put('/user/change-password', updatePassword);
+router.post('/user/change-password', requiresLogin, updatePassword);
 
 
 export default router;
