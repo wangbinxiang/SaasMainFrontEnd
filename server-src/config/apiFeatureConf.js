@@ -20,3 +20,10 @@ export const ATTACHMENT_UPLOAD    = Symbol();
 export const ATTACHMENT_GET       = Symbol();
 //获取图片地址
 export const ATTACHMENT_GET_IMAGE = Symbol();
+
+
+//用户注册手机验证码
+export const SMS_REGISTER         = Symbol();
+//找回密码手机验证码
+export const SMS_REST_PASSWORD    = Symbol();
+

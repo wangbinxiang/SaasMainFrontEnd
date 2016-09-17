@@ -2,23 +2,25 @@ import VerificationCode from '../model/VerificationCode';
 import { REGISTER_CODE } from '../../config/verificationCodeConf';
 
 export default class VerificationCodeService {
-    constructor(store) {
-        this.store = store;
+    constructor(store, cellPhone) {
+        this.store     = store;
+        this.cellPhone = cellPhone;
     }
 
-    buildVerificationCode(phoneNum, codeName){
-        return new VerificationCode(phoneNum, codeName, this.store);
+    buildVerificationCode(codeName){
+        return new VerificationCode(this.cellPhone, codeName, this.store);
     }
 
     //注册发送验证码
-    sendRegister(phoneNum) {
-        const verificationCode = this.buildVerificationCode(phoneNum, REGISTER_CODE);
-        return verificationCode.send(1);
+    sendRegister() {
+        const verificationCode = this.buildVerificationCode(REGISTER_CODE);
+        return verificationCode.send();
     }
 
     //注册验证验证码
-    checkRegister() {
-
+    checkRegister(code) {
+        const verificationCode = this.buildVerificationCode(REGISTER_CODE);
+        return verificationCode.check(code);
     }
 
 }

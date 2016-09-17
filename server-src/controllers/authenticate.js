@@ -1,6 +1,8 @@
 import AuthenticateService from '../models/application/AuthenticateService';
 import VerificationCodeService from '../models/application/VerificationCodeService';
 import moment from 'moment';
+import { REGISTER_CODE } from '../config/verificationCodeConf';
+import VerificationCodeError from '../models/error/VerificationCodeError';
 
 export async function showRegister(ctx, next) {
     const title = '注册';
@@ -10,8 +12,7 @@ export async function showRegister(ctx, next) {
 
     // const authenticateService = new AuthenticateService();
     // let user = await authenticateService.get([1,2,3,4]);
-    // console.log(user);
-
+  
     await ctx.render('authhenticate/register', {
         title, pageJs
     });
@@ -39,9 +40,32 @@ export async function register(ctx, next) {
 
 export async function sendRegisterVerificationCode(ctx, next) {
     let cellPhone  = ctx.query.cellPhone;
+    console.log(cellPhone);
+    try{
+        const verificationCodeService = new VerificationCodeService(ctx.session, cellPhone);
+        await verificationCodeService.sendRegister();
+        ctx.body = { success: true };
+    } catch(err) {
+        if (err instanceof VerificationCodeError) {
+            ctx.status = 500;
+            ctx.body = { success: false , message: err.message };
+        } else {
+            throw err;    
+        }
+    }
 
-    const verificationCodeService = new VerificationCodeService(ctx.session);
-    verificationCodeService.sendRegister(cellPhone);
+    // if (ctx.query.code) {
+    //     try{
+    //         const verificationCodeService = new VerificationCodeService(ctx.session, cellPhone);
+    //         verificationCodeService.checkRegister(ctx.query.code);
+    //     } catch (err) {
+    //         if (err instanceof VerificationCodeError) {
+    //             console.log(err.message);
+    //         } else {
+    //             throw err;    
+    //         }
+    //     }
+    // };
 
 
     // console.log(moment().unix());
@@ -54,7 +78,7 @@ export async function sendRegisterVerificationCode(ctx, next) {
     //生成验证码
     //发送验证码
     //返回信息
-    ctx.body = { success: true };
+    
 }
 
 export async function phoneNum(ctx, next) {

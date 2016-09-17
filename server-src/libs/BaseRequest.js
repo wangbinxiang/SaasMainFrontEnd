@@ -10,6 +10,22 @@ export default class BaseRequest {
         this.paramsErrorCode = 404;
     }
 
+    getSuccessCode() {
+        return this.successCode;
+    }
+
+    setSuccessCode(successCode) {
+        this.successCode = successCode;
+    }
+
+    getParamsErrorCode() {
+        return this.paramsErrorCode;
+    }
+
+    setParamsErrorCode(paramsErrorCode) {
+        this.paramsErrorCode = paramsErrorCode;
+    }
+
     buildData(attributes) {
         this.data = {
             data: {
@@ -17,12 +33,9 @@ export default class BaseRequest {
                 attributes: attributes
             }
         };
-        console.log(this.data);
-        console.log(this.data.data.attributes.additionalInformation);
     }
 
-    buildFeature() {
-    }
+    buildFeature() {}
 
     buildRequest() {
         this.request = new RequestJsonApi(this.host, this.url, this.data);

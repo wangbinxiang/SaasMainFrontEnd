@@ -34,8 +34,8 @@ export default class AuthenticateRequestJsonApi extends BaseRequest {
 
         this.method = POST;
 
-        this.successCode = 201;
-        this.paramsErrorCode = 409;
+        this.setSuccessCode(201);
+        this.setParamsErrorCode(409);
 
         let attributes = {
             cellPhone: this.originData.cellPhone, 

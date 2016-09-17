@@ -31,3 +31,8 @@ export function attachmentApiServiceLocation() {
     return getServiceLcation(attachmentLocation);
 }
 
+
+export function notifyApiServiceLocation() {
+    const notifyLocation = 'notify';
+    return getServiceLcation(notifyLocation);
+}

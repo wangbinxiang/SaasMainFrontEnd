@@ -14,7 +14,8 @@
   },
   "apiServiceLocation": {
     "saas": "http://120.25.161.1:8001",
-    "attachment": "http://120.25.161.1:8010"
+    "attachment": "http://120.25.161.1:8010",
+    "notify": "http://120.25.161.1:8001"
   },
   "memcache": {
     "host": "121.199.18.127",
