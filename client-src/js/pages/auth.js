@@ -20,7 +20,8 @@ $('#btnCode').on('click', () => {
     } else{
         var request = '/register/verification-code/?cellPhone=' + $('#cellPhone').val()
         fetch(request, {
-            method: 'get'
+            method: 'get',
+            credentials: 'include'
         }).then(function(response) {
             //console.log(response.body)
             $('#codeSentNote').show()
@@ -38,6 +39,7 @@ $('#btnReg').on('click', () => {
     if($('[data-invalid]').length === 0){
         fetch('/register', {
             method: 'post',
+            credentials: 'include',
             headers: new Headers({
                 'Content-Type': 'application/JSON'
             }),
@@ -48,13 +50,13 @@ $('#btnReg').on('click', () => {
                 code: $('[name="code"]').val()
             })
         }).then(function(response) {
+            //location.href = '/login'
             console.log(response)
-            $('#formCallout').show();
-            $('#codeInputNote span').toggleClass('blkHide')
-            $('#formReg').foundation('addErrorClasses', $('#codeInput'));
-            
+            $('#formCallout').show().find('p').text(response.body.message);
         }).catch(function(err) {
-            //console.log(err.body)
+            $('#formCallout').show();
+            //$('#codeInputNote span').toggleClass('blkHide')
+            //$('#formReg').foundation('addErrorClasses', $('#codeInput'));
         })
     } else{
         return false;
