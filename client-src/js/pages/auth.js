@@ -13,20 +13,45 @@ Foundation.Abide.defaults.patterns['psw_complexity'] = /^(?=.*[A-Z].*[A-Z])(?=.*
 // .{8}                      Ensure string is of length 8.
 // $                         End anchor.
 
-$('#formReg').on('click', () => {
+$('#btnCode').on('click', () => {
+    $('#formReg').foundation('validateInput', $('#cellPhone'));
+    if($('#cellPhone').is('[data-invalid]')){    
+        $('#formReg').foundation('addErrorClasses', $('#cellPhone'));
+    } else{
+        var request = '/register/verification-code/?cellPhone=' + $('#cellPhone').val()
+        fetch(request, {
+            method: 'get'
+        }).then(function(response) {
+            console.log(response.body)
+            $('#codeSentNote').show()
+        }).catch(function(err) {
+            console.log(err.body)
+        })
+    }
+})
+
+$('#btnReg').on('click', () => {
     $('#formReg').foundation('validateForm');
     if($('#codeInput').is('[data-invalid]')){    
         $('#formReg').foundation('addErrorClasses', $('#codeInput'));
     }
-    if($('[data-invalid]').length > 0){
-        fetch('https://davidwalsh.name/submit-json', {
+    if($('[data-invalid]').length === 0){
+        fetch('/register', {
             method: 'post',
+            headers: new Headers({
+                'Content-Type': 'application/JSON'
+            }),
             body: JSON.stringify({
-                mobil: $('[name="cellPhone"]').val(),
+                cellPhone: $('[name="cellPhone"]').val(),
                 password: $('[name="password"]').val(),
-                password: $('[name="code"]').val()
+                rePassword: $('[name="rePassword"]').val(),
+                code: $('[name="code"]').val()
             })
-        });
+        }).then(function(response) {
+            console.log(response)
+        }).catch(function(err) {
+            //console.log(err.body)
+        })
     } else{
         return false;
     }

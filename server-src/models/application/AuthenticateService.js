@@ -14,7 +14,7 @@ export default class AuthenticateService {
 
     //用户注册功能
     register(cellPhone, password, code, store) {
-
+        console.log(cellPhone, password, code);
         const verificationCodeService = new VerificationCodeService(store, cellPhone);
         verificationCodeService.checkRegister(code);
         console.log(cellPhone, password);

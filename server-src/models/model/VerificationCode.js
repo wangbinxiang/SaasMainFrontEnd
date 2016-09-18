@@ -85,6 +85,7 @@ export default class VerificationCode {
         let phoneNum    = this.getPhoneNum();
         
         let data = { code, timestamp, phoneNum };
+        console.log(data);
         //验证码写入store
         this.saveData(data);
     }
@@ -128,9 +129,12 @@ export default class VerificationCode {
     }
 
     verificationCode(code, data) {
+        console.log(data);
         if (typeof data == 'undefined') {
             return false;
         };
+        console.log(this.phoneNum);
+        console.log(code);
         //data = { code, timestamp , phoneNum };
         if (this.phoneNum !== data.phoneNum) {
             return false;

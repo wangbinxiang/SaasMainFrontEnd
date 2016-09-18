@@ -18,7 +18,7 @@
             <div class="small-10 medium-6 small-centered medium-centered columns">
                 <label>
                     手机号
-                    <input type="text" name="cellPhone" placeholder="请输入手机号码" required pattern="^1[0-9]{10}$" />
+                    <input type="text" name="cellPhone" id="cellPhone" placeholder="请输入手机号码" required pattern="^1[0-9]{10}$" />
                     <span class="form-error">
                         请输入正确的手机号码
                     </span>
@@ -42,13 +42,14 @@
                     <span class="input-group">
                         <input class="input-group-field" name="code" type="number" id="codeInput" placeholder="验证码" required />
                         <span class="input-group-button">
-                            <input type="button" class="button" value="发送手机验证码" />
+                            <input type="button" class="button" id="btnCode" value="发送手机验证码" />
                         </span>
                         <span class="input-group-error">
                             <span class="form-error"><span>验证码不能为空</span><span class="blkHide">验证码错误</span></span>
                         </span>
                     </span>
                 </label>
+                <p class="help-text blkHide" id="codeSentNote">验证码发送成功</p>
             </div>
         </div>
 
