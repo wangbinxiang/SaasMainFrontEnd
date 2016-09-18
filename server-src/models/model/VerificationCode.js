@@ -128,6 +128,9 @@ export default class VerificationCode {
     }
 
     verificationCode(code, data) {
+        if (typeof data == 'undefined') {
+            return false;
+        };
         //data = { code, timestamp , phoneNum };
         if (this.phoneNum !== data.phoneNum) {
             return false;

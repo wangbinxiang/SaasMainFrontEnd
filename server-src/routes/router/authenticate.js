@@ -13,9 +13,6 @@ router.post('/register', register);
 
 router.get('/register/verification-code', sendRegisterVerificationCode);
 
-//验证手机验证码
-router.post('/register/phone-num', phoneNum);
-
 //登陆页面
 router.get('/login', showLogin);
 

@@ -1,5 +1,6 @@
 import UserAdapter from '../adapter/AuthenticateAdapter';
 import User from '../model/User';
+import VerificationCodeService from '../application/VerificationCodeService';
 
 //用户认证服务类
 export default class AuthenticateService {
@@ -12,8 +13,12 @@ export default class AuthenticateService {
     }
 
     //用户注册功能
-    register(passport, password) {
-        return this.userAdapter.signup(passport, password, User);
+    register(cellPhone, password, code, store) {
+
+        const verificationCodeService = new VerificationCodeService(store, cellPhone);
+        verificationCodeService.checkRegister(code);
+        console.log(cellPhone, password);
+        return this.userAdapter.signup(cellPhone, password, User);
     }
 
     //用户登录功能
