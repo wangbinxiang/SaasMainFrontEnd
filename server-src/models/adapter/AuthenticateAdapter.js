@@ -21,9 +21,9 @@ export default class AuthenticateAdapter extends Adapter {
         return this.request();
     }
 
-    signup(passport, password, aUserClass) {
+    signup(cellPhone, password, aUserClass) {
         this.buildRequest(USER_SIGNUP, { 
-            cellPhone: passport,
+            cellPhone: cellPhone,
             password: password
         });
 

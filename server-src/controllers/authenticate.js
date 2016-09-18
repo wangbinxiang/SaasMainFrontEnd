@@ -19,23 +19,35 @@ export async function showRegister(ctx, next) {
 }
 
 export async function register(ctx, next) {
-
+    console.log(ctx.request.body);
     let cellPhone  = ctx.request.body.cellPhone;
     let password   = ctx.request.body.password;
     let rePassword = ctx.request.body.rePassword;
+    //验证码
+    let code       = ctx.request.body.code;
 
-    const authenticateService = new AuthenticateService();
-    let user = await authenticateService.register(cellPhone, password);
+    try{
+        const authenticateService = new AuthenticateService();
+        let user = await authenticateService.register(cellPhone, password, code, ctx.session);
 
-    if (!user) {
-        ctx.redirect('/register');
+        ctx.body = { success: true };
+    } catch(err) {
+        if (err instanceof VerificationCodeError) {
+            ctx.status = 500;
+            ctx.body = { message: err.message };
+        } else {
+            throw err;    
+        }
     }
-    let title    = '注册成功';
-    let info     = '注册成功，请登录。';
-    let location = '/login';
-    await ctx.render('common/info', {
-        title, info, location
-    });
+    // if (!user) {
+    //     ctx.redirect('/register');
+    // }
+    // let title    = '注册成功';
+    // let info     = '注册成功，请登录。';
+    // let location = '/login';
+    // await ctx.render('common/info', {
+    //     title, info, location
+    // });
 }
 
 export async function sendRegisterVerificationCode(ctx, next) {
