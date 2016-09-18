@@ -5,3 +5,12 @@
 .saasIndex {
     background: url(/img/saas_hero.png) center top fixed no-repeat; background-size: cover;
 }
+.input-group-error {
+    display:table-row;
+}
+    .input-group-error .form-error {
+        margin-top:.5rem;
+    }
+.blkHide {
+    display:none;
+}

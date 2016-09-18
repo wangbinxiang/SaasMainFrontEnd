@@ -10,7 +10,7 @@
 
     <h1 class="row column user-margin">用户注册</h1>
 
-    <form data-abide noValidate method="post" >
+    <form data-abide="ajax" noValidate id="formReg">
         <div data-abide-error class="alert callout alert-form-error" style="display:none">
             <p class="text-center"> 注册信息错误，请重新输入。</p>
         </div>
@@ -20,20 +20,19 @@
                     手机号
                     <input type="text" name="cellPhone" placeholder="请输入手机号码" required pattern="^1[0-9]{10}$" />
                     <span class="form-error">
-                        请输入正确的手机号码。
+                        请输入正确的手机号码
                     </span>
                 </label>
                 <label>
                     登录密码
-                    <input type="password" name="password" id="password" placeholder="请输入登录密码" required />
+                    <input type="password" name="password" id="password" pattern="alpha_numeric" placeholder="请输入登录密码" required />
                     <span class="form-error">
                         请输入登录密码
                     </span>
                 </label>
-                <p class="help-text" id="exampleHelpText"></p>
                 <label>
                     再次输入密码
-                    <input type="password" name="rePassword" placeholder="请再次输入密码" aria-describedby="exampleHelpText2" required pattern="alpha_numeric" data-equalto="password" />
+                    <input type="password" name="rePassword" placeholder="请再次输入密码" required data-equalto="password" />
                     <span class="form-error">
                         密码输入不匹配
                     </span>
@@ -41,9 +40,12 @@
                 <label>
                     验证码
                     <span class="input-group">
-                        <input class="input-group-field" name="code" type="number" placeholder="验证码" />
+                        <input class="input-group-field" name="code" type="number" id="codeInput" placeholder="验证码" required />
                         <span class="input-group-button">
                             <input type="button" class="button" value="发送手机验证码" />
+                        </span>
+                        <span class="input-group-error">
+                            <span class="form-error"><span>验证码不能为空</span><span class="blkHide">验证码错误</span></span>
                         </span>
                     </span>
                 </label>
@@ -53,7 +55,7 @@
         <div class="row form-para-note"></div>
 
         <div class="text-center form-submit-wrap">
-            <button class="button large" type="submit" value="Submit">注册</button>
+            <button class="button large" type="submit" value="Submit" id="btnReg">注册</button>
             <button class="secondary button large" type="reset" value="Reset">重置</button>
         </div>
 
