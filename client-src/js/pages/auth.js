@@ -22,7 +22,7 @@ $('#btnCode').on('click', () => {
         fetch(request, {
             method: 'get'
         }).then(function(response) {
-            console.log(response.body)
+            //console.log(response.body)
             $('#codeSentNote').show()
         }).catch(function(err) {
             console.log(err.body)
@@ -49,6 +49,10 @@ $('#btnReg').on('click', () => {
             })
         }).then(function(response) {
             console.log(response)
+            $('#formCallout').show();
+            $('#codeInputNote span').toggleClass('blkHide')
+            $('#formReg').foundation('addErrorClasses', $('#codeInput'));
+            
         }).catch(function(err) {
             //console.log(err.body)
         })

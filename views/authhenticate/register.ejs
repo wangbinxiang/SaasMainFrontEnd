@@ -11,7 +11,7 @@
     <h1 class="row column user-margin">用户注册</h1>
 
     <form data-abide="ajax" noValidate id="formReg">
-        <div data-abide-error class="alert callout alert-form-error" style="display:none">
+        <div data-abide-error class="alert callout alert-form-error" id="formCallout" style="display:none">
             <p class="text-center"> 注册信息错误，请重新输入。</p>
         </div>
         <div class="row">
@@ -45,7 +45,7 @@
                             <input type="button" class="button" id="btnCode" value="发送手机验证码" />
                         </span>
                         <span class="input-group-error">
-                            <span class="form-error"><span>验证码不能为空</span><span class="blkHide">验证码错误</span></span>
+                            <span class="form-error" id="codeInputNote"><span>验证码不能为空</span><span class="blkHide">验证码错误</span></span>
                         </span>
                     </span>
                 </label>
