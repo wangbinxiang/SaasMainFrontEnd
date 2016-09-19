@@ -23,10 +23,13 @@ $('#btnCode').on('click', () => {
             method: 'get',
             credentials: 'include'
         }).then(function(response) {
-            //console.log(response.body)
+            console.log(response['status'])
+            return response.json();
             $('#codeSentNote').show()
-        }).catch(function(err) {
-            console.log(err.body)
+        }).then(function(data){
+            console.log(data['success'])
+        }).catch(function(error) {
+            console.log(error)
         })
     }
 })
@@ -50,9 +53,14 @@ $('#btnReg').on('click', () => {
                 code: $('[name="code"]').val()
             })
         }).then(function(response) {
-            //location.href = '/login'
-            console.log(response)
-            $('#formCallout').show().find('p').text(response.body.message);
+            return response.json();
+        }).then(function(data) {
+            console.log(data['success'])
+            if(data['success']){
+                $('#formSuccess').show();
+            } else {
+                $('#formCallout').show();
+            }
         }).catch(function(err) {
             $('#formCallout').show();
             //$('#codeInputNote span').toggleClass('blkHide')
