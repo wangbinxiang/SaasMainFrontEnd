@@ -106,3 +106,40 @@ $('#province').on('change', () => {
 //        else { done(); }
 //    }
 //};
+
+
+
+
+$('#btnPartner').on('click', () => {
+    $('#formPartner').foundation('validateForm');
+    if ($('[data-invalid]').length === 0) {
+        fetch('/register', {
+            method: 'post',
+            credentials: 'include',
+            headers: new Headers({
+                'Content-Type': 'application/JSON'
+            }),
+            body: JSON.stringify({
+                title: $('#title').val(),
+                cellPhone: $('#cellphone').val(),
+                name:$('name').val()
+            })
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            console.log(data['success'])
+            if (data['success']) {
+                $('#formSuccess').show();
+            } else {
+                $('#formCallout').show();
+            }
+        }).catch(function (err) {
+            $('#formCallout').show();
+            //$('#codeInputNote span').toggleClass('blkHide')
+            //$('#formReg').foundation('addErrorClasses', $('#codeInput'));
+        })
+    } else {
+        return false;
+    }
+    return false;
+})

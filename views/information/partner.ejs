@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云游 -- <%= title %></title>
+    <link rel="icon" href="/img/saas_icon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/appSaas.css" />
+    <link rel="stylesheet" href="/css/appSaasfix.css" />
+  </head>
+  <body <% if (typeof bodyclass != "undefined" && _.isString(bodyclass)) { %> class="<%= bodyclass %>" <% } %> >
+      <header class="top-bar" id="headerGlobal">
+          <div class="top-bar">
+              <div class="top-bar-title stat">
+                  <b>园林电商平台创始合伙人申请</b>              
+              </div>
+          </div>
+      </header>
+      <div class="show-for-small-only small-header-margin-top"></div>
+
+<h1 class="row column">&nbsp;</h1>
+
+<form data-abide="ajax" noValidate id="formPartner">
+    <div class="success callout alert-form-error" id="formSuccess" style="display:none">
+        <p class="text-center">申请成功。</p>
+    </div>
+    <div class="alert callout alert-form-error" id="formCallout" style="display:none">
+        <p class="text-center"> 申请信息错误，请重新输入。</p>
+    </div>
+    <div data-abide-error class="alert callout alert-form-error" style="display:none">
+        <p class="text-center"> 申请信息错误，请重新输入。</p>
+    </div>
+    <div class="row">
+        <div class="small-10 medium-6 small-centered medium-centered columns">
+            <label>
+                公司名称
+                <input type="text" id="title" placeholder="请填写公司名称" required />
+                <span class="form-error">
+                    请输入公司名称
+                </span>
+            </label>
+            <label>
+                联系人姓名
+                <input type="text" id="name" placeholder="请填写联系人姓名" required />
+                <span class="form-error">
+                    请输入联系人姓名
+                </span>
+            </label>
+            <label>
+                手机号
+                <input type="text" id="cellPhone" placeholder="请输入手机号码" required pattern="^1[0-9]{10}$" />
+                <span class="form-error">
+                    请输入正确的手机号码
+                </span>
+            </label>
+        </div>
+    </div>
+
+    <div class="row form-para-note"></div>
+
+    <div class="text-center form-submit-wrap">
+        <button class="button large" type="submit" value="Submit" id="btnPartner">提交申请</button>
+        <button class="secondary button large" type="reset" value="Reset">重置</button>
+    </div>
+</form>
+    <footer class="footer-global">
+        <div class="row text">
+            2016 &copy; 园林电商平台创始合伙人申请<br /><br />
+        </div>
+    </footer>
+<%- include('../layout/footer') -%>

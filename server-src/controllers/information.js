@@ -103,3 +103,14 @@ export async function upload(ctx, next) {
         ctx.body = { success: false, error: '没有文件' };
     }
 }
+
+export async function showPartnerForm(ctx, next) {
+    const title = '合伙人申请';
+    const pageJs = webpackIsomorphicTools.assets().javascript.information;
+
+    
+
+    await ctx.render('information/partner', {
+        title, pageJs
+    });
+}
