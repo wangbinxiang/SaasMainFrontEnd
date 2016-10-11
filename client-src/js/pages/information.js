@@ -3,6 +3,7 @@
 }
 
 import 'foundation-sites'
+import ko from 'knockout'
 
 $(document).foundation();
 Foundation.Abide.defaults.patterns['telephone'] = /^1[0-9]{10}$/;
@@ -133,3 +134,30 @@ $('#btnPartner').on('click', () => {
     }
     return false;
 })
+
+let PartnersModel = function(data){
+    let self = this
+    self.partners = ko.observableArray(data)
+    self.isNext = ko.observable(isnext)
+
+    self.more = function() {
+        pageno = pageno + 1
+        $.ajax({
+            method: "GET",
+            url: "/product-types?number=" + pageno,
+            dataType: "json"
+        })
+        .done(function(respones) {
+            //let types = $.map(respones.productTypes, function(value, index) {
+            //    return [value];
+            //});
+            for(let i of respones.partners){
+                self.partners.push(i)
+            }
+            self.isNext(respones.moreInfo)
+        })
+    }
+}
+
+let partnersModel = new PartnersModel(data)
+ko.applyBindings(partnersModel)

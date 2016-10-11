@@ -107,10 +107,17 @@ export async function upload(ctx, next) {
 export async function showPartnerForm(ctx, next) {
     const title = '合伙人申请';
     const pageJs = webpackIsomorphicTools.assets().javascript.information;
-
     
+    let data = [
+        {title:"Lorem ipsum dolor sit amet", name:"Lorem ipsum dolor", mobile:"15012345678"},
+        {title:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu.", name:"Lorem dolor", mobile:"15012345679"},
+        {title:"Lorem ipsum dolor sit amet, consectetur adipiscing elit.", name:"Lorem ipsum", mobile:"15012345670"}
+    ]
+
+    let moreInfo = true
+    let number = 0
 
     await ctx.render('information/partner', {
-        title, pageJs
+        title, data, number, moreInfo, pageJs
     });
 }

@@ -64,6 +64,39 @@
         <button class="secondary button large" type="reset" value="Reset">重置</button>
     </div>
 </form>
+
+
+<h1 class="row column text-center" style="margin:2rem auto;">创始合伙人申请列表</h1>
+
+<div class="row column">
+    <table class="stack stack--small hover listCart tableList">
+        <thead>
+            <tr>
+                <th>公司名称</th>
+                <th>姓名</th>
+                <th>手机</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach:data">
+            <tr>
+                <td data-th="公司名称" data-bind="text: title"></td>
+                <td data-th="姓名" data-bind="text: name"></td>
+                <td data-th="手机" data-bind="text: mobile"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="list-button row column">
+    <button class="button large btnMore" data-bind="click: more, visible: isNext()">加载更多</button>
+</div>
+
+<script>
+    var data = <%- JSON.stringify(data) %>;
+    var pageno = <%= number %>;
+    var isnext = <%= moreInfo %>;
+</script>
+
     <footer class="footer-global">
         <div class="row text">
             2016 &copy; 园林电商平台创始合伙人申请<br /><br />
