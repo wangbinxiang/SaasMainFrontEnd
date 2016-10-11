@@ -113,30 +113,16 @@ $('#province').on('change', () => {
 $('#btnPartner').on('click', () => {
     $('#formPartner').foundation('validateForm');
     if ($('[data-invalid]').length === 0) {
-        fetch('/register', {
-            method: 'post',
-            credentials: 'include',
-            headers: new Headers({
-                'Content-Type': 'application/JSON'
-            }),
-            body: JSON.stringify({
-                title: $('#title').val(),
-                cellPhone: $('#cellphone').val(),
-                name:$('name').val()
-            })
-        }).then(function (response) {
-            return response.json();
-        }).then(function (data) {
-            console.log(data['success'])
-            if (data['success']) {
-                $('#formSuccess').show();
-            } else {
-                $('#formCallout').show();
-            }
-        }).catch(function (err) {
-            $('#formCallout').show();
-            //$('#codeInputNote span').toggleClass('blkHide')
-            //$('#formReg').foundation('addErrorClasses', $('#codeInput'));
+        $.ajax({
+            method: "POST",
+            url: "/product-types",
+            data: { title: $('#title').val(), cellPhone: $('#cellPhone').val(), name:$('#name').val() }
+        })
+        .done(function(respones) {
+            alert('申请成功！')
+        })
+        .fail(function(respones){
+            $('#formCallout').show(); 
         })
     } else {
         return false;
