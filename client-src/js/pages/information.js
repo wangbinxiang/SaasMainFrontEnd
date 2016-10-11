@@ -119,10 +119,14 @@ $('#btnPartner').on('click', () => {
             data: { title: $('#title').val(), cellPhone: $('#cellPhone').val(), name:$('#name').val() }
         })
         .done(function(respones) {
-            alert('申请成功！')
+            $('#formSuccess').show();
+            $('#formCallout, #blkForm, button').hide(); 
         })
         .fail(function(respones){
             $('#formCallout').show(); 
+            $('#formSuccess').hide();
+            $('#formSuccess').show();
+            $('#formCallout, #blkForm, button').hide(); 
         })
     } else {
         return false;
