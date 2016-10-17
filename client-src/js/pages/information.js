@@ -42,13 +42,15 @@ require.ensure([], function(require) {
     dropzone.autoDiscover = false;
 
     $('.dropzone').each(function(index, element){
+        //let formData = new FormData();
+        
         $(this).dropzone({
-            url: '/upload',
-            paramName: 'postedFile',
+            url: 'http://up-z1.qiniu.com',
+            paramName: 'file',
             maxFilesize: 4,
             addRemoveLinks: true,
             acceptedFiles: '.jpg, .png, .gif, .jpeg, .bmp',
-            maxFiles: 1,
+            maxFiles: 100,
             init:function() {
                 var mockFile = { name: "banner2.jpg", size: 12345 };
                 this.files.push(mockFile);
@@ -64,13 +66,19 @@ require.ensure([], function(require) {
                 this.options.maxFiles = this.options.maxFiles - existingFileCount;
                 
                 this.on('success', function(file, response){
-                    //console.log(response, response.attachmentList[0].id);
-                    console.log($(element).next());
-                    $(element).next().val(response.attachmentList[0].id);
+                    console.log(response);
+                    //$(element).next().val(response.attachmentList[0].id);
                 })
                 this.on('removedfile', function(){
                     $(element).next().val("");
                 })
+            },
+            sending: function(file, xhr, formData){
+                console.log(file)
+                var name = new Date().getTime();
+                formData.append('key', '10000' + name);
+                formData.append('token', "4i-VhpjaUerpYaw5_j8JlIyTjGYwxeUDMe5k2qP3:yoFIRI4kgkcH0A0sq86wqbb5_AI=:eyJzY29wZSI6ImltYWdlIiwiZGVhZGxpbmUiOjE0NzY2OTUyMjR9");
+                formData.append(file, file.name);
             }
             //accept: function(file, done) {
             //    if (file.name == "justinbieber.jpg") {
@@ -159,5 +167,7 @@ let PartnersModel = function(data){
     }
 }
 
-let partnersModel = new PartnersModel(data)
-ko.applyBindings(partnersModel)
+if($('#formPartner').length){
+    let partnersModel = new PartnersModel(data)
+    ko.applyBindings(partnersModel)
+}
