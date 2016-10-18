@@ -43,7 +43,7 @@ require.ensure([], function(require) {
 
     $('.dropzone').each(function(index, element){
         //let formData = new FormData();
-        
+        let key, token
         $(this).dropzone({
             url: 'http://up-z1.qiniu.com',
             paramName: 'file',
@@ -51,6 +51,7 @@ require.ensure([], function(require) {
             addRemoveLinks: true,
             acceptedFiles: '.jpg, .png, .gif, .jpeg, .bmp',
             maxFiles: 100,
+            autoProcessQueue : false,
             init:function() {
                 var mockFile = { name: "banner2.jpg", size: 12345 };
                 this.files.push(mockFile);
@@ -65,20 +66,44 @@ require.ensure([], function(require) {
                 var existingFileCount = 1; // The number of files already uploaded
                 this.options.maxFiles = this.options.maxFiles - existingFileCount;
                 
+                this.on('thumbnail', function(){
+                    //$.ajax({
+                    //    method: "PUT",
+                    //    url: "/uptoken/",
+                    //    data: { id: id}
+                    //})
+                    //.done(function(respones) {
+                    //    key = respones.key
+                    //    token = respones.token
+                    //    this.processQueue()
+                    //})
+                    //.fail(function(respones){
+                    //    alert('error to get upload config')
+                    //})
+                    
+                    let name = new Date().getTime();
+                    console.log(name)
+                    key = '10000' + name
+                    token = "4i-VhpjaUerpYaw5_j8JlIyTjGYwxeUDMe5k2qP3:2vF2ziKFbc-KaAscl6Zm34DMC6Q=:eyJzY29wZSI6ImltYWdlIiwiZGVhZGxpbmUiOjE0NzY3NjUxNTJ9"
+                    this.processQueue()
+                })
+
+                this.on('sending', function(file, xhr, formData){
+                    console.log(file)                 
+                    formData.append('key', key);
+                    formData.append('token', token);
+                    formData.append(file, file.name);
+                })
+
                 this.on('success', function(file, response){
                     console.log(response);
+                    this.processQueue()
                     //$(element).next().val(response.attachmentList[0].id);
                 })
                 this.on('removedfile', function(){
                     $(element).next().val("");
                 })
-            },
-            sending: function(file, xhr, formData){
-                console.log(file)
-                var name = new Date().getTime();
-                formData.append('key', '10000' + name);
-                formData.append('token', "4i-VhpjaUerpYaw5_j8JlIyTjGYwxeUDMe5k2qP3:yoFIRI4kgkcH0A0sq86wqbb5_AI=:eyJzY29wZSI6ImltYWdlIiwiZGVhZGxpbmUiOjE0NzY2OTUyMjR9");
-                formData.append(file, file.name);
+
             }
             //accept: function(file, done) {
             //    if (file.name == "justinbieber.jpg") {
